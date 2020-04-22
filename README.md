@@ -1,3 +1,9 @@
+# 🥑
+## TODO
+- [ ] odinstalovat sass, byl jen pro testik
+## Tech stack
+- [Material Components for React (MDC React)](https://github.com/material-components/material-components-web-react)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
