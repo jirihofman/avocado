@@ -25,3 +25,26 @@ img {
   max-width: 100%;
   display: block;
 }
+
+#menuDemo {
+  margin: 0px;
+  padding: 0px;
+}
+
+#menuDemo li {
+  display: inline;
+  padding: 0px;
+  margin: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container>a {
+    border: 1px dotted gray;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 2 px;
+}

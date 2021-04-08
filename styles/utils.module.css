@@ -15,9 +15,9 @@
 }
 
 .headingLg {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  margin: 1rem 0;
+  font-size: 1rem;
+  line-height: 1;
+  padding-left: 1em;
 }
 
 .headingMd {
@@ -49,4 +49,9 @@
 
 .lightText {
   color: #666;
+}
+
+.small {
+  font-size: small;
+  padding-bottom: 2px;
 }
