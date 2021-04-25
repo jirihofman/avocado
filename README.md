@@ -1,3 +1,5 @@
+[![avocado](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/rv7kws/main&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/rv7kws/runs)
+
 # 🥑 Avocado lekce lehce
 Webová aplikace, která nabízí příklady k procvičování pro žáky základních škol.
 # Next.js
