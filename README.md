@@ -1,6 +1,6 @@
 [![avocado](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/rv7kws/main&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/rv7kws/runs)
 
-# 🥑 Avocado lekce lehce
+# 🥑 Avokádo lekce lehce
 Webová aplikace, která nabízí příklady k procvičování pro žáky základních škol.
 # Next.js
 This is a starter template for [Learn Next.js](https://nextjs.org/learn).
@@ -13,14 +13,16 @@ Dev:
 
 Stack:
 - nextjs, vercel
-- jest, cypress: code coverage
+- jest, cypress
 
-TODO:
-- [ ] state across App: https://reactician.com/articles/sharing-state-between-nextjs-page-navigations-using-react-contexts
+TODO / Roadmap:
 - [ ] přidat wiggle při chybné odpovědi: https://stackoverflow.com/questions/38132700/css-wiggle-shake-effect/38133000
+- [x] WIP: přívětivější UI s Bootstrap nebo Material UI
 - [ ] enumarace: demoId
 - [ ] i18n: english
+- [ ] state across App: https://reactician.com/articles/sharing-state-between-nextjs-page-navigations-using-react-contexts
 - [ ] GitHub Actions
+- [ ] jest + code coverage
 - Třída
 - [ ] Správa uživatelů (žáků)
 - [ ] Testy pro celou třídu

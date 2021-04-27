@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
 import Error from 'next/error'
-import styles from './board.module.css'
-import utilStyles from '../styles/utils.module.css'
 import { generateDemoQuestion, getResult } from '../lib/questions'
 
 /**
@@ -58,58 +56,64 @@ export default function Board({ demoId, notes, subject }) {
     return <Error statusCode={error} />
   }
 
-  return <div className={styles.board}>
-    <div className={utilStyles.small}>{notes ? notes : 'Směle do toho.'}</div>
+  return <div className={'styles-board'}>
+    <small className={''}>{notes ? notes : 'Směle do toho.'}<br /></small>
 
     {/* <button>{'<'}</button>
     <button>{'>'}</button> */}
 
-    <button onClick={handleNewQuestionClick} className={styles.buttonNew}>{question ? 'Nová otázka / nový příklad' : 'Začít'}</button>
+    <button onClick={handleNewQuestionClick} className={'btn btn-outline-warning btn-sm w-50'}>{question ? 'Nová otázka / příklad' : 'Začít'}</button>
     {
       question ? <>
-        <div className={styles.questionText}>
-          {question.pretext}
+        <div className={'h1'}>
+          <small>{question.pretext}</small>
           <b>{question.text}</b>
         </div>
-        <div className={styles.options}>
+        <div className={'d-grid gap-2 d-block'}>
           {
             question.options.map(option => {
-              const className = option.selected ? styles.selected : '';
-              console.log("rendering option:", option);
-              return <div className={styles.option} key={option.id}>
-                <button
-                  className={className}
-                  data-value={option.value}
-                  disabled={!optionsEnabled}
-                  data-id={option.id}
-                  onClick={handleAnswerClick}>{option.value}</button>
-                {
-                  result && (<>
-                    <div className={styles.optionResult}>{option.value === question.solution ? "✅" : "❌"}</div>
-                  </>
-                  )}
-              </div>
+              const isAnswerCorrect = option.value === question.solution;
+              const variant = optionsEnabled ? 'info' : isAnswerCorrect ? 'success' : 'danger';
+              const classNameActive = option.selected ? 'active' : '';
+              const classNameButton = option.selected ? `btn-${variant}` : `btn-outline-${variant}`;
+
+              return <button key={option.id}
+                className={`btn btn-lg w-100 ${classNameButton} ${classNameActive}`}
+                data-value={option.value}
+                disabled={!optionsEnabled}
+                data-id={option.id}
+                style={{ display: 'flex', justifyContent: 'space-between', marginRight: '20px' }}
+                onClick={handleAnswerClick}>
+                {option.value}
+                {result && (
+                  isAnswerCorrect ? <span className="badge bg-success mx-2 pull-right">správně</span> : <span className="badge bg-danger mx-2">špatně</span>
+                )}
+              </button>
             })
           }
+          <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id={'styles-submit'} className='btn btn-primary btn-lg'>Potvrdit</button>
         </div>
-        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id={styles.submit}>Potvrdit</button>
-        {
-          result && (<div className={styles.result}>{result.ok ? "✅" : "❌"}</div>)
-        }
-        <div className={styles.resultText}>{result && result.text}</div>
-        <div className={styles.details}>
+        <div className={'styles-resultText'}>{result && result.text}</div>
+        <div className={'styles-details'}>
           {result && <>
-            TODO: Podrobnosti úkolu:
-          <ul>
-              <li>Okruh: {subject}</li>
-              <li>Štítky: sčítání, jednociferné, do 20, tři možnosti</li>
-              <li>Průběh řešení
+            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Podrobnosti:
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                TODO UNFAKE
                 <ul>
-                  <li>Vybrána odpověď: 5x</li>
-                  <li>Potvrzeno po: 4s</li>
+                  <li>Okruh: {subject}</li>
+                  <li>Štítky: sčítání, jednociferné, do 20, tři možnosti</li>
+                  <li>Průběh řešení
+                    <ul>
+                      <li>Vybrána odpověď: 5x</li>
+                      <li>Potvrzeno po: 4s</li>
+                    </ul>
+                  </li>
                 </ul>
-              </li>
-            </ul>
+              </div>
+            </div>
           </>
           }
         </div>
