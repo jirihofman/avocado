@@ -5,7 +5,7 @@ context('Sanity checks', () => {
 		cy.visit('/')
 	})
 	it('Header links', () => {
-		['🏠', '🗒', '⚙️', 'GitHub', 'Copyright'].forEach(header => {
+		['Home', 'Blog', 'Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
 			cy.get('header ul li a').contains(header).should('be.visible');
 		})
 	})
@@ -14,4 +14,6 @@ context('Sanity checks', () => {
 			cy.get('main section h3').contains(header).should('be.visible');
 		})
 	})
+
+	// TODO: Demo section check
 })

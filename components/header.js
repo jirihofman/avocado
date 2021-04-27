@@ -17,7 +17,7 @@ export default function Header({ children }) {
               <li className="nav-item"><Link href='/posts'><a className="nav-link" title='Blog a novinky'>Blog</a></Link></li>
               <li className="nav-item"><Link href='/settings'><a className="nav-link disabled" title='Nastavení'>Nastavení</a></Link></li>
               <li className="nav-item"><Link href='https://github.com/jirihofman/avocado'><a className="nav-link" title='GitHub' target='_blank'>GitHub</a></Link></li>
-              <li className="nav-item"><a className="nav-link" title='About' role='button' data-bs-toggle="modal" data-bs-target="#exampleModal">About</a></li>
+              <li className="nav-item"><a className="nav-link" title='O Aplikaci' role='button' data-bs-toggle="modal" data-bs-target="#exampleModal">O Aplikaci</a></li>
             </ul>
           </div>
         </div>
