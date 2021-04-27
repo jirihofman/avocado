@@ -12,15 +12,15 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{[title, siteTitle].join(' | ')}</title>
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <ul className={utilStyles.list}>
+      <section className=''>
+        <ul className=''>
           {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
+            <li className='' key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className=''>
                 <Date dateString={date} />
               </small>
             </li>
