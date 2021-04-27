@@ -96,11 +96,11 @@ export default function Board({ demoId, notes, subject }) {
         <div className={'styles-resultText'}>{result && result.text}</div>
         <div className={'styles-details'}>
           {result && <>
-            <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button disabled title="TODO" className="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               Podrobnosti:
             </button>
-            <div class="collapse" id="collapseExample">
-              <div class="card card-body">
+            <div className="collapse" id="collapseExample">
+              <div className="card card-body">
                 TODO UNFAKE
                 <ul>
                   <li>Okruh: {subject}</li>
