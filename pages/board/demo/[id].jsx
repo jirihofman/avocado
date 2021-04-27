@@ -2,40 +2,41 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../../../components/layout'
 import Board from '../../../components/board'
+import DefaultErrorPage from 'next/error'
 
 export default function Exercise({}) {
 	const router = useRouter()
 	const { id: demoId } = router.query
 
-	let title = 'Demo', notes, subject;
+	let title = 'Demo', notes, subject, subtitle;
 
 	switch (demoId) {
 		case 'add-1':
-			title = 'Sčítání jednociferných čísel'
+			subtitle = 'Sčítání jednociferných čísel'
 			notes = 'Vždy existiuje právě jedna správná odpověď.'
 			subject = 'Matematika'
 			break;
 		case 'multiply-1':
-			title = 'Malá násobilka'
+			subtitle = 'Malá násobilka'
 			notes = 'Vždy existiuje právě jedna správná odpověď.'
 			subject = 'Matematika'
 			break;
 		case 'capitals-1':
-			title = 'Hlavní města'
+			subtitle = 'Hlavní města'
 			subject = 'Zeměpis'
 			break;
 	
 		default:
 			console.error("Unknown demo:" + demoId)
-			break;
+			return <DefaultErrorPage statusCode={404} />
 	}
 
-	title = 'Demo - ' + title
+	title = 'Demo'
 
 	return (
-		<Layout title={title}>
+		<Layout title={title} subtitle={subtitle}>
 			<Head>
-				<title>{[title, siteTitle].join(' | ')}</title>
+				<title>{[title, subtitle, siteTitle].join(' | ')}</title>
 			</Head>
 			<Board
 				subject={subject}
