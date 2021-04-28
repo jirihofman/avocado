@@ -15,7 +15,7 @@
     "dev": "next dev -p 4039",
     "build": "next build",
     "start": "next start -p 4038",
-    "test": "eslint . --ext .js,.jsx"
+    "lint": "eslint . --ext .js,.jsx"
   },
   "dependencies": {
     "date-fns": "^2.11.1",
