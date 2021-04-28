@@ -18,22 +18,12 @@ export default function Board({ demoId, notes, subject }) {
     const [submitEnabled, setSubmitEnabled] = useState(false);
     const [optionsEnabled, setOptionsEnabled] = useState(false);
 
-    const handleAnswerClick = async event => {
-        event.preventDefault();
-        question.options.forEach(option => {
-            option.selected = option.id.toString() === event.target.dataset.id;
-        });
-        question.clickCount += 1;
-        const alteredQuestion = { pretext: question.pretext, text: question.text, options: question.options, solution: question.solution, clickCount: question.clickCount };
-        setQuestion(alteredQuestion);
-        setSubmitEnabled(true);
-    };
-
     const handleNewQuestionClick = async event => {
         event.preventDefault();
+
         try {
-            const question = generateDemoQuestion({ demoId });
-            setQuestion(question);
+            const question = generateDemoQuestion({ demoId, subject });
+            setQuestion({ ...question, timeDisplayed: new Date });
             setSubmitEnabled(false);
             setOptionsEnabled(true);
             setResult();
@@ -43,7 +33,21 @@ export default function Board({ demoId, notes, subject }) {
         }
     };
 
+    const handleAnswerClick = async event => {
+        event.preventDefault();
+
+        // TODO: increase count only if different answer is selected
+        // console.log("previously selected", question.options.find(o => o.selected));
+        question.options.forEach(option => {
+            option.selected = option.id.toString() === event.target.dataset.id;
+        });
+        question.clickCount += 1;
+        setQuestion({ ...question, state: 'answer-selected' });
+        setSubmitEnabled(true);
+    };
+
     const handleConfirmButtonClick = async event => {
+        setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
         event.preventDefault();
         const result = getResult(question);
         setResult(result);
@@ -55,14 +59,14 @@ export default function Board({ demoId, notes, subject }) {
         return <Error statusCode={error} />;
     }
 
+    const newButtonClass = question && question.state === 'completed' ? 'btn-warning' : 'btn-outline-warning';
+    const submitButtonClass = question && question.state !== 'answer-selected' ? 'btn-outline-primary' : 'btn-primary';
+
     return (
         <div className='styles-board'>
             <small className=''>{notes || 'Směle do toho.'}<br /></small>
 
-            {/* <button>{'<'}</button>
-    <button>{'>'}</button> */}
-
-            <button onClick={handleNewQuestionClick} className='btn btn-outline-warning btn-sm w-50'>{question ? 'Nová otázka / příklad' : 'Začít'}</button>
+            <button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-sm w-50`}>{question ? 'Nová otázka / příklad' : 'Začít'}</button>
             {
                 question ? <>
                     <div className='h1'>
@@ -95,27 +99,53 @@ export default function Board({ demoId, notes, subject }) {
                                 );
                             })
                         }
-                        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className='btn btn-primary btn-lg'>Potvrdit</button>
+                        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg`}>Potvrdit</button>
                     </div>
                     <div className='styles-resultText'>{result && result.text}</div>
-                    <div className='styles-details'>
+
+                    <div className='mt-3'>
                         {result && <>
-                            <button disabled title='TODO' className='btn btn-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
-                                        Podrobnosti:
+                            <button title='TODO' className='btn btn-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
+                                <span>Podrobnosti:</span>
                             </button>
-                            <div className='collapse' id='collapseExample'>
-                                <div className='card card-body'>
-                                            TODO UNFAKE
-                                    <ul>
-                                        <li>Okruh: {subject}</li>
-                                        <li>Štítky: sčítání, jednociferné, do 20, tři možnosti</li>
-                                        <li>Průběh řešení
-                                            <ul>
-                                                <li>Vybrána odpověď: 5x</li>
-                                                <li>Potvrzeno po: 4s</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                            <button disabled title='TODO2' className='btn btn-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapseSession' aria-expanded='false' aria-controls='collapseSession'>
+                                        Celkové hodnocení:
+                            </button>
+
+                            <div id='aftermath'>
+                                <div className='collapse' id='collapseExample' data-bs-parent="#aftermath">
+                                    <div className='card card-body'>
+                                        <ul>
+                                            <li>Předmět: {subject}</li>
+                                            <li>Štítky:
+                                                {question.tags && question.tags.map(labelString => {
+                                                    return <span className='badge bg-secondary ms-1' key={labelString}>{labelString}</span>;
+                                                }) || ' žádné'}
+                                            </li>
+                                            <li>Průběh řešení
+                                                <ul>
+                                                    <li>Vybrána odpověď: {question.clickCount}x</li>
+                                                    <li>Potvrzeno po: {question.timeCompleted && question.timeDisplayed &&
+                                                        parseInt((question.timeCompleted - question.timeDisplayed) / 1000, 10)
+                                                    }</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className='collapse' id='collapseSession' data-bs-parent="#aftermath">
+                                    <div className='card card-body'>
+                                                TODO UNFAKE
+                                        <ul>
+                                            <li>Otázek celkem: 666</li>
+                                            <li>Správně: 1</li>
+                                            <li>Špatně: 665</li>
+                                            <li>Průměrný čas odpovědi: 30s</li>
+                                            <li>Nejkratší čas odpovědi: 2s</li>
+                                            <li>Nejdelší čas odpovědi: 201s</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </>}
