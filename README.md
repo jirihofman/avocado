@@ -12,16 +12,14 @@ Dev:
 - `http://localhost:4039`
 
 Stack:
-- nextjs, vercel
+- nextjs, bootstrap 5, vercel
 - jest, cypress
 
 TODO / Roadmap:
 - [ ] přidat wiggle při chybné odpovědi: https://stackoverflow.com/questions/38132700/css-wiggle-shake-effect/38133000
-- [x] WIP: přívětivější UI s Bootstrap nebo Material UI
 - [ ] enumarace: demoId
 - [ ] i18n: english
 - [ ] state across App: https://reactician.com/articles/sharing-state-between-nextjs-page-navigations-using-react-contexts
-- [ ] GitHub Actions
 - [ ] jest + code coverage
 - Třída
 - [ ] Správa uživatelů (žáků)
