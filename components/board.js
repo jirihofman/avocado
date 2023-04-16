@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import Error from 'next/error';
 import { generateDemoQuestion, getResult } from '../lib/questions';
