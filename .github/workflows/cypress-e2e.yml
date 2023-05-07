@@ -13,7 +13,7 @@ jobs:
         with:
           build: npm run build
           start: npm start
-          config: baseUrl=http://localhost:4038
+          config: baseUrl=http://127.0.0.1:4038
           record: true
         env:
           # pass the Dashboard record key as an environment variable
