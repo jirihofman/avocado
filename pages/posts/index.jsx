@@ -11,6 +11,8 @@ export default function Home({ allPostsData }) {
         <Layout title={title}>
             <Head>
                 <title>{[title, siteTitle].join(' | ')}</title>
+                <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' crossOrigin='anonymous' />
+                <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js' crossOrigin='anonymous' />
             </Head>
             <section className=''>
                 <ul className=''>
