@@ -4,7 +4,7 @@ import DefaultErrorPage from 'next/error';
 
 export default function Exercise({ params: { id: demoId }}) {
 
-    let notes, subject, subtitle;
+    let notes, subject;
 
     switch (demoId) {
         case 'add-1':
