@@ -22,6 +22,10 @@ export default function Demo() {
                                 <Link legacyBehavior href='/board/demo/multiply-1'><a role='button' title='Malá násobilka' className='btn btn-outline-primary btn-sm'>Malá násobilka</a></Link>
                             </div>
                             <div className='input-group'>
+                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Hry</div>
+                                <Link legacyBehavior href='/board/demo/dice-add-1'><a role='button' title='Kostky sčítání' className='btn btn-outline-primary btn-sm'>Kostky</a></Link>
+                            </div>
+                            <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Zeměpis</div>
                                 <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/capitals-1'><a role='button' title='Hlavní města' className='btn btn-outline-primary btn-sm'>Hlavní města</a></Link>
                             </div>

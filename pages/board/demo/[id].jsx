@@ -21,6 +21,10 @@ export default function Exercise() {
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
+        case 'dice-add-1':
+            subtitle = 'Kostky';
+            subject = 'Hry';
+            break;
         case 'capitals-1':
             subtitle = 'Hlavní města';
             subject = 'Zeměpis';
