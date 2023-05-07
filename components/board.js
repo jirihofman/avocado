@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Error from 'next/error';
-import { generateDemoQuestion, getResult } from '../lib/questions';
+import { generateDemoQuestion, getResult, isIconDisplay } from '../lib/questions';
 
 /**
  * TODO proper description - not up to date
@@ -33,13 +33,11 @@ export default function Board({ demoId, notes, subject }) {
         }
     };
 
-    const handleAnswerClick = async event => {
-        event.preventDefault();
-
+    const handleAnswerClick = async optionId => {
         // TODO: increase count only if different answer is selected
         // console.log("previously selected", question.options.find(o => o.selected));
         question.options.forEach(option => {
-            option.selected = option.id.toString() === event.target.dataset.id;
+            option.selected = option.id === optionId;
         });
         question.clickCount += 1;
         setQuestion({ ...question, state: 'answer-selected' });
@@ -62,54 +60,61 @@ export default function Board({ demoId, notes, subject }) {
     const newButtonClass = question && question.state === 'completed' ? 'btn-warning' : 'btn-outline-warning';
     const submitButtonClass = question && question.state !== 'answer-selected' ? 'btn-outline-primary' : 'btn-primary';
 
+    // Classes to display icon instead of text options
+    const optionsGridClass = isIconDisplay(demoId) ? 'd-flex justify-content-center align-items-center mt-4' : 'd-grid d-block';
+
     return (
         <div className='styles-board'>
-            <small className=''>{notes || 'Směle do toho.'}<br /></small>
+            {notes && <small>{notes}<hr /></small>}
 
-            <button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-sm w-50`}>{question ? 'Nová otázka / příklad' : 'Začít'}</button>
             {
                 question ? <>
                     <div className='h1'>
                         <small>{question.pretext}</small>
                         <b>{question.text}</b>
                     </div>
-                    <div className='d-grid gap-2 d-block'>
+                    <div className={optionsGridClass + ' gap-2'}>
                         {
                             question.options.map(option => {
                                 const isAnswerCorrect = option.value === question.solution;
-                                const variant = optionsEnabled ? 'info' : isAnswerCorrect ? 'success' : 'danger';
+                                const variant = optionsEnabled ? 'secondary' : isAnswerCorrect ? 'success' : 'danger';
                                 const classNameActive = option.selected ? 'active' : '';
                                 const classNameButton = option.selected ? `btn-${variant}` : `btn-outline-${variant}`;
 
                                 return (
                                     <button
                                         key={option.id}
-                                        className={`btn btn-lg w-100 ${classNameButton} ${classNameActive}`}
+                                        className={`btn btn-lg w-100 ${isIconDisplay(demoId) ? 'justify-content-center' : ''} ${classNameButton} ${classNameActive}`}
                                         data-value={option.value}
                                         disabled={!optionsEnabled}
                                         data-id={option.id}
-                                        style={{ display: 'flex', justifyContent: 'space-between', marginRight: '20px' }}
-                                        onClick={handleAnswerClick}
+                                        style={{ display: 'flex', justifyContent: 'space-between' }}
+                                        onClick={() => handleAnswerClick(option.id)}
                                     >
-                                        {option.value}
-                                        {result && (
+                                        {option.displayValue || option.value}
+                                        {!isIconDisplay(demoId) && result && (
                                             isAnswerCorrect ? <span className='badge bg-success mx-2 pull-right'>správně</span> : <span className='badge bg-danger mx-2'>špatně</span>
                                         )}
                                     </button>
                                 );
                             })
                         }
-                        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg`}>Potvrdit</button>
+                    </div>
+                    {/* Buttons next to each other */}
+                    <div className='d-flex justify-content-between mt-4'>
+                        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
+                        <button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg w-50`}>{question ? '⏭' : '⏩'}</button>
                     </div>
                     <div className='styles-resultText'>{result && result.text}</div>
 
                     <div className='mt-3'>
-                        {result && <>
+                        {/* TODO: remove false when ready */}
+                        {result && false && <>
                             <button title='TODO' className='btn btn-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
                                 <span>Podrobnosti:</span>
                             </button>
                             <button disabled title='TODO2' className='btn btn-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapseSession' aria-expanded='false' aria-controls='collapseSession'>
-                                        Celkové hodnocení:
+                                Celkové hodnocení:
                             </button>
 
                             <div id='aftermath'>
@@ -136,7 +141,7 @@ export default function Board({ demoId, notes, subject }) {
 
                                 <div className='collapse' id='collapseSession' data-bs-parent="#aftermath">
                                     <div className='card card-body'>
-                                                TODO UNFAKE
+                                        TODO UNFAKE
                                         <ul>
                                             <li>Otázek celkem: 666</li>
                                             <li>Správně: 1</li>
@@ -151,7 +156,7 @@ export default function Board({ demoId, notes, subject }) {
                         </>}
                     </div>
                 </>
-                    : <div>Tabule je prázdná. Klikněte na tlačítko Začít.</div>
+                    : <div><button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg w-50`}>▶️</button></div>
             }
         </div>
     );

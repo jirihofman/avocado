@@ -1,8 +1,8 @@
 {
-  "name": "avocado-trainer",
+  "name": "avocado",
   "version": "1.0.0",
   "private": false,
-  "description": "Procvičování znalostí z osnov žáků základních škol.",
+  "description": "Procvičování znalostí a dovedností pro děti nejen základních škol.",
   "repository": {
     "url": "https://github.com/jirihofman/avocado"
   },
@@ -23,6 +23,7 @@
     "lodash": "^4.17.21",
     "next": "^13.4.1",
     "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.2"
