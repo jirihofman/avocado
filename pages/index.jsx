@@ -19,7 +19,7 @@ export default function Home() {
                 <p>Plná verze zatím není k dispozici.</p>
                 <ul id='menuDemo'>
                     <li>
-                        <Link href='/board-setup'><a role='button' title='TODO' disabled>Výběr</a></Link>
+                        <Link legacyBehavior href='/board-setup'><a role='button' title='TODO' disabled>Výběr</a></Link>
                     </li>
                 </ul>
             </section>
