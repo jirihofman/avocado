@@ -8,6 +8,8 @@ export default function Post({ postData }) {
         <Layout>
             <Head>
                 <title>{postData.title}</title>
+                <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' crossOrigin='anonymous' />
+                <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js' crossOrigin='anonymous' />
             </Head>
             <article>
                 <h1 className=''>{postData.title}</h1>
