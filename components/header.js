@@ -12,10 +12,10 @@ export default function Header({ children }) {
                     </button>
                     <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                         <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                            <li className='nav-item'><Link href='/'><a className='nav-link' title='Homepage'>Home</a></Link></li>
-                            <li className='nav-item'><Link href='/posts'><a className='nav-link' title='Blog a novinky'>Blog</a></Link></li>
-                            <li className='nav-item'><Link href='/settings'><a className='nav-link disabled' title='Nastavení'>Nastavení</a></Link></li>
-                            <li className='nav-item'><Link href='https://github.com/jirihofman/avocado'><a className='nav-link' title='GitHub' target='_blank'>GitHub</a></Link></li>
+                            <li className='nav-item'><Link legacyBehavior href='/'><a className='nav-link' title='Homepage'>Home</a></Link></li>
+                            <li className='nav-item'><Link legacyBehavior href='/posts'><a className='nav-link' title='Blog a novinky'>Blog</a></Link></li>
+                            <li className='nav-item'><Link legacyBehavior href='/settings'><a className='nav-link disabled' title='Nastavení'>Nastavení</a></Link></li>
+                            <li className='nav-item'><Link legacyBehavior href='https://github.com/jirihofman/avocado'><a className='nav-link' title='GitHub' target='_blank'>GitHub</a></Link></li>
                             <li className='nav-item'><a className='nav-link' title='O Aplikaci' role='button' data-bs-toggle='modal' data-bs-target='#exampleModal'>O Aplikaci</a></li>
                         </ul>
                     </div>

@@ -16,7 +16,7 @@ export default function Home({ allPostsData }) {
                 <ul className=''>
                     {allPostsData.map(({ id, date, title }) => (
                         <li className='' key={id}>
-                            <Link href={`/posts/${id}`}>
+                            <Link legacyBehavior href={`/posts/${id}`}>
                                 <a>{title}</a>
                             </Link>
                             <br />
