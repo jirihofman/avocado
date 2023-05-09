@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "date-fns": "^2.29.3",
+    "emojisplosion": "^2.6.1",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "next": "^13.4.1",

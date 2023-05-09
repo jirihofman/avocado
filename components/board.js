@@ -1,14 +1,13 @@
 import { useState } from 'react';
+import { emojisplosion } from 'emojisplosion';
 import Error from 'next/error';
 import { generateDemoQuestion, getResult, isIconDisplay } from '../lib/questions';
 
+const settings = {
+    confirmAnswer: false,
+};
+
 /**
- * TODO proper description - not up to date
- * TODO solution and options format can change. Make it an object.
- * @param {object} props
- * @param {string} props.text Question text
- * @param {string} props.solution Correct answer to the question
- * @param {string[]} props.options Possible answers to the question
  * @returns Screen with lesson configuration, question and/or answers.
  */
 export default function Board({ demoId, notes, subject }) {
@@ -33,24 +32,38 @@ export default function Board({ demoId, notes, subject }) {
         }
     };
 
-    const handleAnswerClick = async optionId => {
+    const handleAnswerClick = async(evt, optionId) => {
         // TODO: increase count only if different answer is selected
         // console.log("previously selected", question.options.find(o => o.selected));
         question.options.forEach(option => {
             option.selected = option.id === optionId;
         });
         question.clickCount += 1;
-        setQuestion({ ...question, state: 'answer-selected' });
         setSubmitEnabled(true);
+        if (!settings.confirmAnswer) {
+            handleConfirmButtonClick(evt);
+        } else {
+            setQuestion({ ...question, state: 'answer-selected' });
+        }
     };
 
-    const handleConfirmButtonClick = async event => {
+    const handleConfirmButtonClick = (evt) => {
         setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
-        event.preventDefault();
+        // event.preventDefault();
         const result = getResult(question);
         setResult(result);
         setSubmitEnabled(false);
         setOptionsEnabled(false);
+
+        if (result.ok) {
+            // http://frontendfreecode.com/bootstrap-button-with-star-explosion-effect-on-click
+            emojisplosion({
+                position: () => ({
+                    x: evt.clientX,
+                    y: evt.clientY,
+                }),
+            });
+        }
     };
 
     if (error) {
@@ -63,8 +76,10 @@ export default function Board({ demoId, notes, subject }) {
     // Classes to display icon instead of text options
     const optionsGridClass = isIconDisplay(demoId) ? 'd-flex justify-content-center align-items-center mt-4' : 'd-grid d-block';
 
+    const stylesBoardClass = result?.ok === true ? 'styles-board-ok' : result?.ok === false ? 'styles-board-fail' : null;
+
     return (
-        <div className='styles-board'>
+        <div className={stylesBoardClass}>
             {notes && <small>{notes}<hr /></small>}
 
             {
@@ -89,11 +104,13 @@ export default function Board({ demoId, notes, subject }) {
                                         disabled={!optionsEnabled}
                                         data-id={option.id}
                                         style={{ display: 'flex', justifyContent: 'space-between' }}
-                                        onClick={() => handleAnswerClick(option.id)}
+                                        onClick={(evt) => handleAnswerClick(evt, option.id)}
                                     >
                                         {option.displayValue || option.value}
                                         {!isIconDisplay(demoId) && result && (
-                                            isAnswerCorrect ? <span className='badge bg-success mx-2 pull-right'>správně</span> : <span className='badge bg-danger mx-2'>špatně</span>
+                                            isAnswerCorrect ? 
+                                                <span className='badge bg-success mx-2 pull-right'>správně</span> : 
+                                                <span className='badge bg-danger mx-2'>špatně</span>
                                         )}
                                     </button>
                                 );
@@ -102,10 +119,13 @@ export default function Board({ demoId, notes, subject }) {
                     </div>
                     {/* Buttons next to each other */}
                     <div className='d-flex justify-content-between mt-4'>
-                        <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
-                        <button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg w-50`}>{question ? '⏭' : '⏩'}</button>
+                        {
+                            settings.confirmAnswer &&
+                            <button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
+                        }
+                        <button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg ${settings.confirmAnswer ? 'w-50' : 'w-100'}`}>{question ? '⏭' : '⏩'}</button>
                     </div>
-                    <div className='styles-resultText'>{result && result.text}</div>
+                    <div className='styles-resultText'>{result?.text}</div>
 
                     <div className='mt-3'>
                         {/* TODO: remove false when ready */}
@@ -156,7 +176,7 @@ export default function Board({ demoId, notes, subject }) {
                         </>}
                     </div>
                 </>
-                    : <div><button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg w-50`}>▶️</button></div>
+                    : <div><button onClick={handleNewQuestionClick} className={`btn ${newButtonClass} btn-lg w-100`}>▶️</button></div>
             }
         </div>
     );
