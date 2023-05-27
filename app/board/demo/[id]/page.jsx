@@ -21,6 +21,10 @@ export default function Exercise({ params: { id: demoId }}) {
             // subtitle = 'Kostky';
             subject = 'Hry';
             break;
+        case 'dice-larger-1':
+            // subtitle = 'Kostky';
+            subject = 'Hry';
+            break;
         case 'capitals-1':
             // subtitle = 'Hlavní města';
             subject = 'Zeměpis';

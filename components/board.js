@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { emojisplosion } from 'emojisplosion';
+import { emojisplosion, defaultEmojis } from 'emojisplosion';
 import Error from 'next/error';
 import { generateDemoQuestion, getResult, isIconDisplay } from '../lib/questions';
 
@@ -16,6 +16,9 @@ export default function Board({ demoId, notes, subject }) {
     const [result, setResult] = useState();
     const [submitEnabled, setSubmitEnabled] = useState(false);
     const [optionsEnabled, setOptionsEnabled] = useState(false);
+
+    // Add more emojis to the default set
+    defaultEmojis.push('🦖', '🦖', '🦖', '🧪', '🚀');
 
     const handleNewQuestionClick = async event => {
         event.preventDefault();
@@ -58,6 +61,7 @@ export default function Board({ demoId, notes, subject }) {
         if (result.ok) {
             // http://frontendfreecode.com/bootstrap-button-with-star-explosion-effect-on-click
             emojisplosion({
+                emojis: defaultEmojis,
                 position: () => ({
                     x: evt.clientX,
                     y: evt.clientY,

@@ -23,7 +23,8 @@ export default function Demo() {
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Hry</div>
-                                <Link legacyBehavior href='/board/demo/dice-add-1'><a role='button' title='Kostky sčítání' className='btn btn-outline-primary btn-sm'>Kostky</a></Link>
+                                <Link legacyBehavior href='/board/demo/dice-add-1'><a role='button' title='Kostky sčítání' className='btn btn-outline-primary btn-sm'>🎲 Sčítání</a></Link>
+                                <Link legacyBehavior href='/board/demo/dice-larger-1'><a role='button' title='Najdi větší číslo na kostce' className='btn btn-outline-primary btn-sm'>🎲 Najdi vyšší</a></Link>
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Zeměpis</div>
