@@ -20,6 +20,7 @@ export default function Demo() {
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Matematika</div>
                                 <Link legacyBehavior href='/board/demo/add-1'><a role='button' title='Sčítání' className='btn btn-outline-primary btn-sm'>Sčítání</a></Link>
                                 <Link legacyBehavior href='/board/demo/multiply-1'><a role='button' title='Malá násobilka' className='btn btn-outline-primary btn-sm'>Malá násobilka</a></Link>
+                                <Link legacyBehavior href='/board/demo/larger-1'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší</a></Link>
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Hry</div>
