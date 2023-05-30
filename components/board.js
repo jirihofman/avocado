@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { emojisplosion, defaultEmojis } from 'emojisplosion';
 import Error from 'next/error';
 import { sample } from 'lodash';
@@ -17,6 +17,13 @@ export default function Board({ demoId, notes, subject }) {
     const [result, setResult] = useState();
     const [submitEnabled, setSubmitEnabled] = useState(false);
     const [optionsEnabled, setOptionsEnabled] = useState(false);
+
+    useEffect(() => {
+        // if(['dice-add-1', 'dice-larger-1', 'larger-1'].includes(demoId)) {}
+
+        // Show new question immediately
+        handleNewQuestionClick({ preventDefault: () => {} });
+    }, []);
 
     const handleNewQuestionClick = async event => {
         event.preventDefault();

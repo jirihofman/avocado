@@ -8,29 +8,25 @@ export default function Exercise({ params: { id: demoId }}) {
 
     switch (demoId) {
         case 'add-1':
-            // subtitle = 'Sčítání jednociferných čísel';
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
         case 'multiply-1':
-            // subtitle = 'Malá násobilka';
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
         case 'dice-add-1':
-            // subtitle = 'Kostky';
             subject = 'Hry';
             break;
         case 'dice-larger-1':
-            // subtitle = 'Kostky';
+            // notes = 'Které číslo je větší?';
             subject = 'Hry';
             break;
         case 'larger-1':
-            // subtitle = 'Kostky';
+            // notes = 'Sečti kosty';
             subject = 'Matematika';
             break;
         case 'capitals-1':
-            // subtitle = 'Hlavní města';
             subject = 'Zeměpis';
             break;
 	

@@ -10,7 +10,7 @@ export default function Demo() {
                     <h2 className='accordion-header' id='headingOne'>
                         <button className='accordion-button' type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
                             <span>Demo</span>
-                            <span className='badge bg-secondary mx-1'>4</span>
+                            <span className='badge bg-secondary mx-1'>6</span>
                         </button>
                     </h2>
                     <div id='collapseOne' className='accordion-collapse collapse show' aria-labelledby='headingOne' data-bs-parent='#accordionDemo'>
