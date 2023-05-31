@@ -74,8 +74,10 @@ export default function Board({ demoId, notes, subject }) {
             emojisplosion({
                 emojis,
                 position: () => ({
-                    x: evt.clientX,
-                    y: evt.clientY,
+                    // either cursor position or middle of the screen
+                    x: evt.clientX || window.innerWidth / 2,
+                    // either cursor position or few pixels from the top
+                    y: evt.clientY || 100,
                 }),
             });
         }
