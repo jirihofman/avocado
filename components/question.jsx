@@ -42,11 +42,11 @@ export default function Question({ demoId, subject }) {
         }
     };
 
-    const handleAnswerClick = async(evt, optionId) => {
+    const handleAnswerClick = async(evt, clickedOptionIndex) => {
         // TODO: increase count only if different answer is selected
         // console.log("previously selected", question.options.find(o => o.selected));
-        question.options.forEach(option => {
-            option.selected = option.id === optionId;
+        question.options.forEach((option, index) => {
+            option.selected = index === clickedOptionIndex;
         });
         question.clickCount += 1;
 
@@ -194,7 +194,7 @@ export default function Question({ demoId, subject }) {
                             data-id={option.id}
                             data-index={index}
                             style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.5rem' }}
-                            onClick={(evt) => handleAnswerClick(evt, index + 1)}
+                            onClick={(evt) => handleAnswerClick(evt, index)}
                         >
                             {/* {isAnswerCorrect ? '✅' : '❌'} */}
                             {option.displayValue || option.value}
