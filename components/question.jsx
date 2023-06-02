@@ -163,7 +163,8 @@ export default function Question({ demoId, subject }) {
         <div className={optionsGridClass + ' gap-2'}>
             {
                 question.options.map((option, index) => {
-                    let isAnswerCorrect = getResult(question).ok;
+                    // TODO: redo this to use steps too
+                    let isAnswerCorrect = option.value === question.solution;
                     let variant = optionsEnabled ? 'secondary' : isAnswerCorrect ? 'success' : 'danger';
                     let classNameActive = option.selected ? 'active' : '';
                     let optionDisabled = !optionsEnabled;
