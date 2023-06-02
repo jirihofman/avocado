@@ -20,8 +20,6 @@ export default function Question({ demoId, subject }) {
     const [disabledOptionsKO, setDisabledOptionsKO] = useState([]);
 
     useEffect(() => {
-        // if(['dice-add-1', 'dice-larger-1', 'larger-1'].includes(demoId)) {}
-
         // Show new question immediately. Good for quick practising, not for timed tests.
         handleNewQuestionClick();
     }, []);

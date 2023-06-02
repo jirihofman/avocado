@@ -1,35 +1,36 @@
 'use client';
 import Board from '../../../../components/board';
 import DefaultErrorPage from 'next/error';
+import { demoIds } from '../../../../lib/questions';
 
 export default function Exercise({ params: { id: demoId }}) {
 
     let notes, subject;
 
     switch (demoId) {
-        case 'add-1':
+        case demoIds.ADD_1:
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
-        case 'multiply-1':
+        case demoIds.MULTIPLY_1:
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
-        case 'dice-add-1':
+        case demoIds.DICE_ADD_1:
             subject = 'Hry';
             break;
-        case 'dice-larger-1':
+        case demoIds.DICE_LARGER_1:
             // notes = 'Které číslo je větší?';
             subject = 'Hry';
             break;
-        case 'larger-1':
+        case demoIds.LARGER_1:
             // notes = 'Sečti kosty';
             subject = 'Matematika';
             break;
-        case 'capitals-1':
+        case demoIds.CAPITALS_1:
             subject = 'Zeměpis';
             break;
-        case 'words-1':
+        case demoIds.WORDS_1:
             subject = 'Slova';
             break;
 	
