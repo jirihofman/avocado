@@ -16,6 +16,8 @@ export default function Question({ demoId, subject }) {
     const [error, setError] = useState(false);
     const [question, setQuestion] = useState();
     const [result, setResult] = useState();
+    const [disabledOptionsOK, setDisabledOptionsOK] = useState([]);
+    const [disabledOptionsKO, setDisabledOptionsKO] = useState([]);
 
     useEffect(() => {
         // if(['dice-add-1', 'dice-larger-1', 'larger-1'].includes(demoId)) {}
@@ -32,6 +34,8 @@ export default function Question({ demoId, subject }) {
             setSubmitEnabled(false);
             setOptionsEnabled(true);
             setResult();
+            setDisabledOptionsOK([]);
+            setDisabledOptionsKO([]);
         } catch (error) {
             console.error('Error while rendering new question:', error);
             setError(error.message);
@@ -61,28 +65,32 @@ export default function Question({ demoId, subject }) {
 
     const handleConfirmButtonClick = (evt) => {
         if (!isSingleStep(demoId)) {
-            const { value } = evt.target.dataset;
+            const { value, index } = evt.target.dataset;
+            const result = getResult(question, { index: parseInt(question.currentStep, 10), optionValue: value });
             if (question.steps?.[question.currentStep]?.solution === value) {
                 // Step is correct
-                const result = getResult(question, value);
                 if (question.currentStep < question.steps.length - 1) {
                     // There are more steps, do only small emoji explosion
                     setQuestion({ ...question, currentStep: question.currentStep + 1, timeCompleted: new Date });
                     doEmojis({ evt, result, demoId, emojiCount: () => Math.random() * 3 + 3, });
                 } else {
+                    // All steps are correct, do big emoji explosion
                     setResult(result);
                     setSubmitEnabled(false);
                     setOptionsEnabled(false);
                     setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
                     doEmojis({ evt, result, demoId });
                 }
+                setDisabledOptionsOK([...disabledOptionsOK, parseInt(index, 10)]);
             } else {
-                const result = getResult(question, value);
+                // Step is incorrect
                 setResult(result);
                 setSubmitEnabled(false);
                 setOptionsEnabled(false);
+                setDisabledOptionsKO([...disabledOptionsKO, parseInt(index, 10)]);
             }
         } else {
+            // Single step question
             setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
             const result = getResult(question);
             setResult(result);
@@ -117,7 +125,7 @@ export default function Question({ demoId, subject }) {
             const currentLetterIndex = question.currentStep;
             const letters = question.text.split('').map((letter, index) => {
                 const style = {
-                    fontSize: '3rem',
+                    fontSize: '2.1rem',
                     minWidth: '50px',
                     // black color
                     color: '#000',
@@ -127,7 +135,7 @@ export default function Question({ demoId, subject }) {
 
                 // Completed letters are underlined and bold
                 if (index < currentLetterIndex || question.state === 'completed') {
-                    style.textDecoration = 'underline';
+                    // style.textDecoration = 'underline';
                     style.fontWeight = 'bold';
                 }
                 
@@ -157,21 +165,21 @@ export default function Question({ demoId, subject }) {
         <div className={optionsGridClass + ' gap-2'}>
             {
                 question.options.map((option, index) => {
-                    const isAnswerCorrect = getResult(question, option).ok;
-                    const id = option.id - 1;
+                    let isAnswerCorrect = getResult(question).ok;
                     let variant = optionsEnabled ? 'secondary' : isAnswerCorrect ? 'success' : 'danger';
                     let classNameActive = option.selected ? 'active' : '';
                     let optionDisabled = !optionsEnabled;
 
                     if (!isSingleStep(demoId)) {
-                        if (question.currentStep === id) {
-                            variant = 'secondary';
-                        } else if (question.currentStep > id) {
-                            variant = 'success';
+                        if ([...disabledOptionsOK, ...disabledOptionsKO].includes(index)) {
+                            isAnswerCorrect = disabledOptionsOK.includes(index);
+                            variant = isAnswerCorrect ? 'success' : 'danger';
                             classNameActive = 'active';
                             optionDisabled = true;
                         } else {
                             variant = 'secondary';
+                            optionDisabled = false;
+                            classNameActive = '';
                         }
                     }
                     
@@ -185,10 +193,11 @@ export default function Question({ demoId, subject }) {
                             disabled={optionDisabled}
                             data-id={option.id}
                             data-index={index}
-                            style={{ display: 'flex', justifyContent: 'space-between' }}
-                            onClick={(evt) => handleAnswerClick(evt, option.id)}
+                            style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.5rem' }}
+                            onClick={(evt) => handleAnswerClick(evt, index + 1)}
                         >
-                            {option.index || option.value}
+                            {/* {isAnswerCorrect ? '✅' : '❌'} */}
+                            {option.displayValue || option.value}
                             {!isIconDisplay(demoId) && result && (
                                 isAnswerCorrect ?
                                     <span className='badge bg-success mx-2 pull-right'>správně</span> :
