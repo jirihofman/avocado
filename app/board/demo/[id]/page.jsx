@@ -29,6 +29,9 @@ export default function Exercise({ params: { id: demoId }}) {
         case 'capitals-1':
             subject = 'Zeměpis';
             break;
+        case 'words-1':
+            subject = 'Slova';
+            break;
 	
         default:
             console.error('Unknown demo:' + demoId);

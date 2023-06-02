@@ -31,6 +31,10 @@ export default function Demo() {
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Zeměpis</div>
                                 <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/capitals-1'><a role='button' title='Hlavní města' className='btn btn-outline-primary btn-sm'>Hlavní města</a></Link>
                             </div>
+                            <div className='input-group'>
+                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Slova</div>
+                                <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/words-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>Slova</a></Link>
+                            </div>
                         </div>
                     </div>
                 </div>
