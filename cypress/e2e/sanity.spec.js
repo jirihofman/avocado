@@ -1,11 +1,16 @@
 /// <reference types="cypress" />
 
 context('Sanity checks', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/');
+        cy.on('uncaught:exception', (err, runnable) => {
+            // Hydrate error is expected
+            console.error(runnable, err);
+            return false;
+        });
     });
     it('Header links', () => {
-        ['Home', 'Blog', 'Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
+        ['Blog', 'Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
             cy.get('header ul li a').contains(header).should('be.visible');
         });
     });

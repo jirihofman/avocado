@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Error from 'next/error';
 import QuestionResult from './question-result';
-import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep } from '../lib/questions';
+import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep, demoIds } from '../lib/questions';
 import ButtonNewQuestion from './button-new-question';
 import QuestionLoading from './question-loading';
 
@@ -63,7 +63,7 @@ export default function Question({ demoId, subject }) {
 
     const handleConfirmButtonClick = (evt) => {
         if (!isSingleStep(demoId)) {
-            const { value, index } = evt.target.dataset;
+            const { value, id } = evt.target.dataset;
             const result = getResult(question, { index: parseInt(question.currentStep, 10), optionValue: value });
             if (question.steps?.[question.currentStep]?.solution === value) {
                 // Step is correct
@@ -79,13 +79,18 @@ export default function Question({ demoId, subject }) {
                     setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
                     doEmojis({ evt, result, demoId });
                 }
-                setDisabledOptionsOK([...disabledOptionsOK, parseInt(index, 10)]);
+                setDisabledOptionsOK([...disabledOptionsOK, parseInt(id, 10)]);
             } else {
                 // Step is incorrect
                 setResult(result);
                 setSubmitEnabled(false);
                 setOptionsEnabled(false);
-                setDisabledOptionsKO([...disabledOptionsKO, parseInt(index, 10)]);
+                // Find correct option(s)
+                const wrongOptions = question.options.filter((o) => question.steps[question.currentStep].solution !== o.value);
+                // Disable all options except the correct one.
+                setDisabledOptionsKO([...disabledOptionsKO, ...wrongOptions.map((o) => o.id)]);
+                // Correct disabled options are the rest of the options.
+                setDisabledOptionsOK([...disabledOptionsOK, ...question.options.filter((o) => !wrongOptions.includes(o)).map((o) => o.id)]);
             }
         } else {
             // Single step question
@@ -119,9 +124,10 @@ export default function Question({ demoId, subject }) {
             return question.text;
         }
 
-        if (demoId === 'words-1') {
+        if (demoId === demoIds.WORDS_1) {
             const currentLetterIndex = question.currentStep;
             const letters = question.text.split('').map((letter, index) => {
+                let className;
                 const style = {
                     fontSize: '2.1rem',
                     minWidth: '50px',
@@ -135,27 +141,30 @@ export default function Question({ demoId, subject }) {
                 if (index < currentLetterIndex || question.state === 'completed') {
                     // style.textDecoration = 'underline';
                     style.fontWeight = 'bold';
+                    className = 'completed';
                 }
                 
                 if (index === currentLetterIndex && question.state !== 'completed') {
                     // bootstrap style warning color
                     style.border = '3px dashed #f0ad4e';
                     style.fontWeight = 'bold';
+                    className = 'current';
                 } else {
                     style.border = '3px solid transparent';
+                    className = 'not-completed';
                 }
-                return <button key={question.text + index + letter} className={'btn btn-lg btn-outline-primary mx-1'} disabled={true} style={style}>{letter}</button>;
+                return <button key={question.text + index + letter} className={`btn btn-lg btn-outline-primary mx-1 ${className}`} disabled={true} style={style}>{letter}</button>;
             });
 
             return <>
                 {letters}
-                <p role="img" aria-label="car">{question.pretext}</p>
+                <p role="img" className='mx-3'>{question.pretext}</p>
             </>;
         }
     }
 
     return <div className={stylesBoardClass}>
-        <div className='h1'>
+        <div className='h1 question-text'>
             <small>{isSingleStep(demoId) ? question.pretext: ''}</small>
             <b>{getTextForWordQuestion()}</b>
         </div>
@@ -170,8 +179,8 @@ export default function Question({ demoId, subject }) {
                     let optionDisabled = !optionsEnabled;
 
                     if (!isSingleStep(demoId)) {
-                        if ([...disabledOptionsOK, ...disabledOptionsKO].includes(index)) {
-                            isAnswerCorrect = disabledOptionsOK.includes(index);
+                        if ([...disabledOptionsOK, ...disabledOptionsKO].includes(option.id)) {
+                            isAnswerCorrect = disabledOptionsOK.includes(option.id);
                             variant = isAnswerCorrect ? 'success' : 'danger';
                             classNameActive = 'active';
                             optionDisabled = true;
@@ -187,7 +196,7 @@ export default function Question({ demoId, subject }) {
                     return (
                         <button
                             key={option.id}
-                            className={`btn btn-lg w-100 ${isIconDisplay(demoId) ? 'justify-content-center' : ''} ${classNameButton} ${classNameActive}`}
+                            className={`question-btn btn btn-lg w-100 ${isIconDisplay(demoId) ? 'justify-content-center' : ''} ${classNameButton} ${classNameActive}`}
                             data-value={option.value}
                             disabled={optionDisabled}
                             data-id={option.id}
