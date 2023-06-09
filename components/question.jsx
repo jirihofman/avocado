@@ -77,7 +77,8 @@ export default function Question({ demoId, subject }) {
                     setSubmitEnabled(false);
                     setOptionsEnabled(false);
                     setQuestion({ ...question, state: 'completed', timeCompleted: new Date });
-                    doEmojis({ evt, result, demoId });
+                    // question.pretext is the emoji to display on success.
+                    doEmojis({ evt, result, demoId, finalEmoji: question.pretext });
                 }
                 setDisabledOptionsOK([...disabledOptionsOK, parseInt(id, 10)]);
             } else {
