@@ -33,7 +33,10 @@ export default function Demo() {
                                 <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/capitals-1'><a role='button' title='Hlavní města' className='btn btn-outline-primary btn-sm'>Hlavní města</a></Link>
                             </div>
                             <div className='input-group'>
-                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Slova</div>
+                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>
+                                    Slova
+                                    <span className='ps-1 emoji'></span>
+                                </div>
                                 <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/words-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>Slova</a></Link>
                             </div>
                         </div>

@@ -57,3 +57,72 @@ body {
   animation: shake 0.5s;
   animation-iteration-count: 2;
 }
+
+.emoji::before {
+  content: " ";  
+  opacity: 1;
+  animation: changeEmoji 12s infinite;
+  height: fit-content;
+  width: fit-content;
+}
+
+@keyframes changeEmoji {
+  0% {
+      opacity: 1;
+      content: "🦖";
+    }
+  
+    8.33% {
+      opacity: 0;
+    }
+  
+    16.67% {
+      opacity: 1;
+      content: "🎉";
+    }
+  
+    25% {
+      opacity: 0;
+    }
+  
+    33.33% {
+      opacity: 1;
+      content: "🤚";
+    }
+  
+    41.67% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+      content: "🚲";
+    }
+  
+    58.33% {
+      opacity: 0;
+    }
+  
+    66.67% {
+      opacity: 1;
+      content: "💣";
+    }
+  
+    75% {
+      opacity: 0;
+    }
+  
+    83.33% {
+      opacity: 1;
+      content: "🐉";
+    }
+  
+    91.67% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+      content: "🦖";
+    }
+}
