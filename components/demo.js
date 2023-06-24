@@ -37,7 +37,14 @@ export default function Demo() {
                                     Slova
                                     <span className='ps-1 emoji'></span>
                                 </div>
-                                <Link legacyBehavior href='/board/demo/capitals-1' as='/board/demo/words-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>Slova</a></Link>
+                                <Link legacyBehavior href='/board/demo/words-1' as='/board/demo/words-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>Slova</a></Link>
+                            </div>
+                            <div className='input-group'>
+                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>
+                                    TV
+                                    <span className='ps-1 tv'></span>
+                                </div>
+                                <Link legacyBehavior href='/board/demo/tv-1' as='/board/demo/tv-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>👻</a></Link>
                             </div>
                         </div>
                     </div>
