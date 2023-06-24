@@ -62,8 +62,8 @@ export default function Question({ demoId, subject }) {
     };
 
     const handleConfirmButtonClick = (evt) => {
+        const { value, id } = evt.target.dataset;
         if (!isSingleStep(demoId)) {
-            const { value, id } = evt.target.dataset;
             const result = getResult(question, { index: parseInt(question.currentStep, 10), optionValue: value });
             if (question.steps?.[question.currentStep]?.solution === value) {
                 // Step is correct
@@ -101,7 +101,7 @@ export default function Question({ demoId, subject }) {
             setSubmitEnabled(false);
             setOptionsEnabled(false);
     
-            doEmojis({ evt, result, demoId });
+            doEmojis({ evt, result, demoId, finalEmoji: value });
         }
     };
 
