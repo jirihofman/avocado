@@ -154,7 +154,7 @@ export default function Question({ demoId, subject }) {
                     style.border = '3px solid transparent';
                     className = 'not-completed';
                 }
-                return <button key={question.text + index + letter} className={`btn btn-lg btn-outline-primary mx-1 ${className}`} disabled={true} style={style}>{letter}</button>;
+                return <button key={question.text + index + letter} className={`btn btn-lg btn-outline-primary me-1 ${className}`} disabled={true} style={style}>{letter}</button>;
             });
 
             return <>
