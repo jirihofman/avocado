@@ -38,8 +38,10 @@ export default function Exercise({ params: { id: demoId }}) {
             break;
 	
         default:
-            console.error('Unknown demo:' + demoId);
-            return <DefaultErrorPage statusCode={404} />;
+            if (!demoIds[demoId]) {
+                console.error('Unknown demo:' + demoId);
+                return <DefaultErrorPage statusCode={404} />;
+            }
     }
 
     return (

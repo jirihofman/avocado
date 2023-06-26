@@ -41,10 +41,10 @@ export default function Demo() {
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>
-                                    TV
+                                    TV 📺
                                     <span className='ps-1 tv'></span>
                                 </div>
-                                <Link legacyBehavior href='/board/demo/tv-1' as='/board/demo/tv-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>👻</a></Link>
+                                <Link legacyBehavior href='/board/demo/tv-1' as='/board/demo/tv-1'><a role='button' title='Slova' className='btn btn-outline-primary btn-sm'>👻 🇬🇧</a></Link>
                             </div>
                         </div>
                     </div>
