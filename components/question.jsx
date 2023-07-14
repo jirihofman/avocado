@@ -40,6 +40,19 @@ export default function Question({ demoId, subject }) {
         }
     };
 
+    const handleRetryButtonClick = () => {
+        // remove `selected` property from options
+        question.options.forEach((option) => {
+            delete option.selected;
+        });
+        setQuestion({ ...question, state: 'new', currentStep: 0 });
+        setSubmitEnabled(false);
+        setOptionsEnabled(true);
+        setResult();
+        setDisabledOptionsOK([]);
+        setDisabledOptionsKO([]);
+    };
+
     const handleAnswerClick = async(evt, clickedOptionIndex) => {
         // TODO: increase count only if different answer is selected
         // console.log("previously selected", question.options.find(o => o.selected));
@@ -62,7 +75,9 @@ export default function Question({ demoId, subject }) {
     };
 
     const handleConfirmButtonClick = (evt) => {
-        const { value, id } = evt.target.dataset;
+        const { id } = evt.target.dataset;
+        // value from data-value attribute of target or closest button parent.
+        const value = evt.target.dataset.value || evt.target.closest('button').dataset.value;
         if (!isSingleStep(demoId)) {
             const result = getResult(question, { index: parseInt(question.currentStep, 10), optionValue: value });
             if (question.steps?.[question.currentStep]?.solution === value) {
@@ -224,6 +239,7 @@ export default function Question({ demoId, subject }) {
 				<button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
             }
             <ButtonNewQuestion question={question} handleNewQuestionClick={handleNewQuestionClick} settings={settings} />
+            <button onClick={handleRetryButtonClick} className={`btn ${submitButtonClass} btn-lg w-50`} title='Opakovat'>🔄</button>
         </div>
         <div className='styles-resultText'>{result?.text}</div>
 
