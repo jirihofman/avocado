@@ -23,6 +23,10 @@ export default function Exercise({ params: { id: demoId }}) {
             // notes = 'Které číslo je větší?';
             subject = 'Hry';
             break;
+        case demoIds.CHESS_1:
+
+            subject = 'Šachy';
+            break;
         case demoIds.LARGER_1:
             // notes = 'Sečti kosty';
             subject = 'Matematika';

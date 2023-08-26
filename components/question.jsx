@@ -116,7 +116,7 @@ export default function Question({ demoId, subject }) {
             setSubmitEnabled(false);
             setOptionsEnabled(false);
     
-            doEmojis({ evt, result, demoId, finalEmoji: value });
+            doEmojis({ evt, result, demoId, finalEmoji: question.solutionDisplay || value });
         }
     };
 

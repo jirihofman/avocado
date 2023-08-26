@@ -126,3 +126,34 @@ body {
       content: "🦖";
     }
 }
+
+/** chessboard.jsx */
+.square {
+  width: 12.5%;
+  padding-bottom: 12.5%;
+  position: relative;
+  display: inline-block;
+}
+
+.white {
+  background-color: #f0d9b5;
+}
+
+.black {
+  background-color: #b58863;
+}
+
+.chessboard {
+  position: relative;
+  width: 300px;
+  line-height: 0;
+}
+
+.piece {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  top: 45%;
+  left: 25%;
+}
