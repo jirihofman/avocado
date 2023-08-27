@@ -116,8 +116,12 @@ export default function Question({ demoId, subject }) {
             setResult(result);
             setSubmitEnabled(false);
             setOptionsEnabled(false);
-    
-            doEmojis({ evt, result, demoId, finalEmoji: question.solutionDisplay || value });
+
+            // Some questions might start emojis later, eg. chess after move is completed.
+            setTimeout(() => {
+                doEmojis({ evt, result, demoId, finalEmoji: question.solutionDisplay || value });
+            }, question.emojiDelay || 0);
+
             if (question.textComponent) {
                 // It is a react component. Pass it another props.
                 // Clone doesn't do re-render.
