@@ -1,7 +1,8 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import Error from 'next/error';
 import QuestionResult from './question-result';
-import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep, demoIds } from '../lib/questions';
+import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep, demoIds, getNewTextComponent } from '../lib/questions';
 import ButtonNewQuestion from './button-new-question';
 import QuestionLoading from './question-loading';
 
@@ -45,7 +46,7 @@ export default function Question({ demoId, subject }) {
         question.options.forEach((option) => {
             delete option.selected;
         });
-        setQuestion({ ...question, state: 'new', currentStep: 0 });
+        setQuestion({ ...question, state: 'new', currentStep: 0, textComponent: getNewTextComponent(demoId, question.textComponentProps) });
         setSubmitEnabled(false);
         setOptionsEnabled(true);
         setResult();
@@ -117,6 +118,12 @@ export default function Question({ demoId, subject }) {
             setOptionsEnabled(false);
     
             doEmojis({ evt, result, demoId, finalEmoji: question.solutionDisplay || value });
+            if (question.textComponent) {
+                // It is a react component. Pass it another props.
+                // Clone doesn't do re-render.
+                const newTextComponent = getNewTextComponent(demoId, question.textComponentProps, { result });
+                setQuestion({ ...question, textComponent: newTextComponent, text: undefined });
+            }
         }
     };
 
@@ -137,7 +144,7 @@ export default function Question({ demoId, subject }) {
 
     function getTextForWordQuestion() {
         if (isSingleStep(demoId)) {
-            return question.text;
+            return question.text || question.textComponent;
         }
 
         if (demoId === demoIds.WORDS_1) {

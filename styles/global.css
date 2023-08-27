@@ -157,3 +157,11 @@ body {
   top: 45%;
   left: 25%;
 }
+
+/** Moving my piece towards the one I can take. 3secs. Stay there. */      
+      			.piece-move {
+      			  animation: move 3s;
+      			  animation-fill-mode: forwards;
+              z-index: 1;
+      			}
+      
