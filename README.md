@@ -9,7 +9,7 @@ Starded by: `npx create-next-app avocado --use-npm --example "https://github.com
 
 Dev:
 - `npm run dev`
-- `http://localhost:4039`
+- `http://localhost:3000`
 
 Stack:
 - nextjs, bootstrap 5, vercel
