@@ -18,7 +18,7 @@
     "lint": "eslint . --ext .js,.jsx"
   },
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "emojisplosion": "^2.6.1",
     "eslint-config-next": "^13.5.2",
     "gray-matter": "^4.0.3",
