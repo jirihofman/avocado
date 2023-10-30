@@ -28,7 +28,7 @@
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
     "remark": "^13.0.0",
-    "remark-html": "^13.0.2"
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "cypress": "^12.13.0",
