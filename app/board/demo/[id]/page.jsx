@@ -37,6 +37,9 @@ export default function Exercise({ params: { id: demoId }}) {
         case demoIds.WORDS_1:
             subject = 'Slova';
             break;
+        case demoIds.PATTERNS_1:
+            subject = 'Doplňování';
+            break;
         case demoIds.TV_1:
             subject = 'Televize';
             break;
