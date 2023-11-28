@@ -31,7 +31,7 @@ export default function Demo() {
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Doplň</div>
-                                <Link legacyBehavior href='/board/demo/patterns-1'><a role='button' title='Doplň chybějící políčko' className='btn btn-outline-primary btn-sm'>🔴 🟠 ❓</a></Link>
+                                <Link legacyBehavior href='/board/demo/patterns-1'><a role='button' title='Doplň chybějící políčko' className='btn btn-outline-primary btn-sm'>🔴 🗡️ ❓ 🚗</a></Link>
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Zeměpis</div>
