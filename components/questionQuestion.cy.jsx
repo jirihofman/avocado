@@ -30,4 +30,12 @@ describe('<Question />', () => {
             });
         });
     });
+
+    describe('patterns-1', () => {
+        it('reload', () => {
+            cy.mount(<Question demoId={demoIds.PATTERNS_1} subject={'patterns'} />);
+            // get first letter
+            cy.get('button.btn.btn-outline-primary.btn-lg.w-50').click();
+        });
+    });
 });

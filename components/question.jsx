@@ -46,7 +46,9 @@ export default function Question({ demoId, subject }) {
         question.options.forEach((option) => {
             delete option.selected;
         });
-        setQuestion({ ...question, state: 'new', currentStep: 0, textComponent: getNewTextComponent(demoId, question.textComponentProps) });
+
+        const textComponent = getNewTextComponent(demoId, demoId === demoIds.PATTERNS_1 ? question : question.textComponentProps, { result: demoId === demoIds.PATTERNS_1 ? undefined : result });
+        setQuestion({ ...question, state: 'new', currentStep: 0, textComponent });
         setSubmitEnabled(false);
         setOptionsEnabled(true);
         setResult();
@@ -123,10 +125,15 @@ export default function Question({ demoId, subject }) {
             }, question.emojiDelay || 0);
 
             if (question.textComponent) {
-                // It is a react component. Pass it another props.
-                // Clone doesn't do re-render.
-                const newTextComponent = getNewTextComponent(demoId, question.textComponentProps, { result });
-                setQuestion({ ...question, textComponent: newTextComponent, text: undefined });
+                if (demoId === demoIds.PATTERNS_1) {
+                    const newTextComponent = getNewTextComponent(demoId, question, { result });
+                    setQuestion({ ...question, textComponent: newTextComponent });
+                } else {
+                    // It is a react component. Pass it another props.
+                    // Clone doesn't do re-render.
+                    const newTextComponent = getNewTextComponent(demoId, question.textComponentProps, { result });
+                    setQuestion({ ...question, textComponent: newTextComponent, text: undefined });
+                }
             }
         }
     };
@@ -148,7 +155,7 @@ export default function Question({ demoId, subject }) {
 
     function getTextForWordQuestion() {
         if (isSingleStep(demoId)) {
-            return question.text || question.textComponent;
+            return question.textComponent || question.text;
         }
 
         if (demoId === demoIds.WORDS_1) {
@@ -170,7 +177,7 @@ export default function Question({ demoId, subject }) {
                     style.fontWeight = 'bold';
                     className = 'completed';
                 }
-                
+
                 if (index === currentLetterIndex && question.state !== 'completed') {
                     // bootstrap style warning color
                     style.border = '3px dashed #f0ad4e';
@@ -217,7 +224,7 @@ export default function Question({ demoId, subject }) {
                             classNameActive = '';
                         }
                     }
-                    
+
                     const classNameButton = option.selected && isSingleStep(demoId) ? `btn-${variant}` : `btn-outline-${variant}`;
 
                     return (
