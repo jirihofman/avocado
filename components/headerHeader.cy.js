@@ -7,7 +7,7 @@ describe('<Header />', () => {
             cy.viewport('iphone-se2');
             cy.mount(<Header />);
             cy.get('header').should('be.visible');
-            ['Blog', 'Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
+            ['Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
                 cy.get('header ul li a').contains(header).should('be.hidden');
             });
         });
@@ -17,7 +17,7 @@ describe('<Header />', () => {
             cy.viewport('macbook-11');
             cy.mount(<Header />);
             cy.get('header').should('be.visible');
-            ['Blog', 'Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
+            ['Nastavení', 'GitHub', 'O Aplikaci'].forEach(header => {
                 cy.get('header ul li a').contains(header).should('be.visible');
             });
         });
