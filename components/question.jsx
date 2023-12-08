@@ -125,6 +125,7 @@ export default function Question({ demoId, subject }) {
             }, question.emojiDelay || 0);
 
             if (question.textComponent) {
+                // TODO: refactor this hardcoded demoId functionality.
                 if (demoId === demoIds.PATTERNS_1) {
                     const newTextComponent = getNewTextComponent(demoId, question, { result });
                     setQuestion({ ...question, textComponent: newTextComponent });

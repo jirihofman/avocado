@@ -18,17 +18,13 @@
     "lint": "eslint . --ext .js,.jsx"
   },
   "dependencies": {
-    "date-fns": "^2.30.0",
     "emojisplosion": "^2.6.1",
-    "eslint-config-next": "^14.0.3",
-    "gray-matter": "^4.0.3",
+    "eslint-config-next": "^14.0.4",
     "lodash": "^4.17.21",
-    "next": "^14.0.3",
+    "next": "^14.0.4",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.10.3",
-    "react-dom": "^18.2.0",
-    "remark": "^13.0.0",
-    "remark-html": "^16.0.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "cypress": "^13.6.0",

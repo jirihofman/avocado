@@ -1,7 +1,5 @@
 import Header from './header';
 
-export const siteTitle = 'Avokádo lekce lehce';
-
 export default function Layout({ children, subtitle, title }) {
     return (
         <div className='container'>
