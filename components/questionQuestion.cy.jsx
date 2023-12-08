@@ -32,10 +32,26 @@ describe('<Question />', () => {
     });
 
     describe('patterns-1', () => {
+
         it('reload', () => {
             cy.mount(<Question demoId={demoIds.PATTERNS_1} subject={'patterns'} />);
-            // get first letter
-            cy.get('button.btn.btn-outline-primary.btn-lg.w-50').click();
+            // Click 1st option
+            cy.get('[data-index="0"]').click();
+            cy.get('b > .d-flex').should('not.contain.text', '❓');
+            cy.get('button.btn.btn-outline-primary.btn-lg.w-50').as('btn-reload').click();
+            cy.get('b > .d-flex').should('contain.text', '❓');
+
+            // Click 2nd option
+            cy.get('[data-index="1"]').click();
+            cy.get('b > .d-flex').should('not.contain.text', '❓');
+            cy.get('@btn-reload').click();
+            cy.get('b > .d-flex').should('contain.text', '❓');
+
+            // Click 3rd option
+            cy.get('[data-index="2"]').click();
+            cy.get('b > .d-flex').should('not.contain.text', '❓');
+            cy.get('@btn-reload').click();
+            cy.get('b > .d-flex').should('contain.text', '❓');
         });
     });
 });
