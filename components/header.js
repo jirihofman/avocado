@@ -1,7 +1,10 @@
-import { version, author, repository, name } from '../package.json';
+import pjson from '../package.json';
 import Link from 'next/link';
 
 export default function Header({ children }) {
+
+    const { version, author, repository, name } = pjson;
+
     return (
         <header>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
