@@ -28,11 +28,12 @@ export default function Exercise({ params: { id: demoId }}) {
             subject = 'Šachy';
             break;
         case demoIds.LARGER_1:
-            // notes = 'Sečti kosty';
             subject = 'Matematika';
             break;
         case demoIds.LARGER_2:
-            // notes = 'Sečti kosty';
+            subject = 'Matematika';
+            break;
+        case demoIds.LARGER_3:
             subject = 'Matematika';
             break;
         case demoIds.CAPITALS_1:

@@ -23,6 +23,7 @@ export default function Demo() {
                                 <Link legacyBehavior href='/board/demo/multiply-1'><a role='button' title='Malá násobilka' className='btn btn-outline-primary btn-sm'>Malá násobilka</a></Link>
                                 <Link legacyBehavior href='/board/demo/larger-1'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší 1-10</a></Link>
                                 <Link legacyBehavior href='/board/demo/larger-2'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší 1-20</a></Link>
+                                <Link legacyBehavior href='/board/demo/larger-3'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší 1-100</a></Link>
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Hry</div>
