@@ -31,6 +31,10 @@ export default function Exercise({ params: { id: demoId }}) {
             // notes = 'Sečti kosty';
             subject = 'Matematika';
             break;
+        case demoIds.LARGER_2:
+            // notes = 'Sečti kosty';
+            subject = 'Matematika';
+            break;
         case demoIds.CAPITALS_1:
             subject = 'Zeměpis';
             break;
