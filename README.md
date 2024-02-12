@@ -12,7 +12,7 @@ Dev:
 - `http://localhost:3000`
 
 Stack:
-- nextjs, bootstrap 5, vercel
+- Next.js, bootstrap 5, vercel
 - jest, cypress
 
 TODO / Roadmap:
@@ -23,3 +23,9 @@ TODO / Roadmap:
 - Třída
 - [ ] Správa uživatelů (žáků)
 - [ ] Testy pro celou třídu
+
+# How to add a new question
+1. Add a new question to the `questions` array in `lib/questions.js`.
+2. Add a new key to the `demoIds` enum in `lib/questions.js`.
+3. Add a new button to `components/demo.js`
+4. Add a new `case` to the `switch` in `app/board/demo/[id]/page.jsx`

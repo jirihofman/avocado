@@ -36,6 +36,9 @@ export default function Exercise({ params: { id: demoId }}) {
         case demoIds.LARGER_3:
             subject = 'Matematika';
             break;
+        case demoIds.NEXT_NUMBER_1:
+            subject = 'Matematika';
+            break;
         case demoIds.CAPITALS_1:
             subject = 'Zeměpis';
             break;
