@@ -16,9 +16,7 @@ Stack:
 - jest, cypress
 
 TODO / Roadmap:
-- [ ] enumarace: demoId
 - [ ] i18n: english
-- [ ] state across App: https://reactician.com/articles/sharing-state-between-nextjs-page-navigations-using-react-contexts
 - [ ] jest + code coverage
 - Třída
 - [ ] Správa uživatelů (žáků)
