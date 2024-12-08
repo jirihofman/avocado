@@ -1,5 +1,5 @@
-'use client';;
-import { use } from "react";
+'use client';
+import { use } from 'react';
 import Board from '../../../../components/board';
 import DefaultErrorPage from 'next/error';
 import { demoIds } from '../../../../lib/questions';
