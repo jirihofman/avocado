@@ -252,7 +252,7 @@ export default function Question({ demoId, subject }) {
             }
         </div>
         {/* Buttons next to each other */}
-        <div className='d-flex justify-content-between mt-4'>
+        <div className='d-flex justify-content-between mt-5 pt-4 border-top'>
             {
                 settings.confirmAnswer &&
 				<button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
