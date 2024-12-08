@@ -1,9 +1,15 @@
-'use client';
+'use client';;
+import { use } from "react";
 import Board from '../../../../components/board';
 import DefaultErrorPage from 'next/error';
 import { demoIds } from '../../../../lib/questions';
 
-export default function Exercise({ params: { id: demoId }}) {
+export default function Exercise(props) {
+    const params = use(props.params);
+
+    const {
+        id: demoId
+    } = params;
 
     let notes, subject;
 
