@@ -54,6 +54,11 @@ export default function Question({ demoId, subject }) {
         setResult();
         setDisabledOptionsOK([]);
         setDisabledOptionsKO([]);
+
+        if (demoId === demoIds.VOICE_ALPHABET_CZ_1) {
+            // if there is an <audio> element, play it again
+            document.querySelector('audio')?.play();
+        }
     };
 
     const handleAnswerClick = async(evt, clickedOptionIndex) => {
