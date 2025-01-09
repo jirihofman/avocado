@@ -137,7 +137,12 @@ export default function Question({ demoId, subject }) {
                 } else {
                     // It is a react component. Pass it another props.
                     // Clone doesn't do re-render.
-                    const newTextComponent = getNewTextComponent(demoId, question.textComponentProps, { result });
+                    let textComponentProps = question.textComponentProps;
+                    if (demoId === demoIds.VOICE_ALPHABET_CZ_1) {
+                        // Prevent playing audio again.
+                        textComponentProps = null;
+                    }
+                    const newTextComponent = getNewTextComponent(demoId, textComponentProps, { result });
                     setQuestion({ ...question, textComponent: newTextComponent, text: undefined });
                 }
             }
