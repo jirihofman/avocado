@@ -1,9 +1,13 @@
 'use client';
+
+import { use } from 'react';
 import Board from '../../../../components/board';
 import DefaultErrorPage from 'next/error';
 import { demoIds } from '../../../../lib/questions';
 
-export default function Exercise({ params: { id: demoId }}) {
+export default function Exercise(props) {
+
+    const { id: demoId } = use(props.params);
 
     let notes, subject;
 
@@ -27,8 +31,10 @@ export default function Exercise({ params: { id: demoId }}) {
             subject = 'Deskové hry';
             break;
         case demoIds.CHESS_1:
-
             subject = 'Šachy';
+            break;
+        case demoIds.VOICE_ALPHABET_CZ_1:
+            subject = 'Česká abeceda';
             break;
         case demoIds.LARGER_1:
             subject = 'Matematika';
