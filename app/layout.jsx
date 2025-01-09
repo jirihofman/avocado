@@ -3,12 +3,11 @@ import Main from '../components/layout';
 import PropTypes from 'prop-types';
 import '../styles/global.css';
 
-export default function RootLayout({
-    children,
-    params: { lang },
-    // Layouts must accept a children prop.
-    // This will be populated with nested layouts or pages
-}) {
+export default async function RootLayout(props) {
+
+    const params = await props.params;
+    const { lang } = params;
+    const { children } = props;
 
     return (
         <html lang={lang || 'en'}>
