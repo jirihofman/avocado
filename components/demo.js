@@ -50,6 +50,12 @@ export default function Demo() {
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>
+                                    Písmena
+                                </div>
+                                <Link legacyBehavior href='/board/demo/voice-alphabet-cz-1' as='/board/demo/voice-alphabet-cz-1'><a role='button' title='Písmena' className='btn btn-outline-primary btn-sm'>ABCD</a></Link>
+                            </div>
+                            <div className='input-group'>
+                                <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>
                                     TV 📺
                                     <span className='ps-1 tv'></span>
                                 </div>
