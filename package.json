@@ -21,7 +21,7 @@
     "emojisplosion": "^4.0.0",
     "eslint-config-next": "^15.1.4",
     "lodash": "^4.17.21",
-    "next": "^15.1.4",
+    "next": "^15.1.6",
     "react": "^19.0.0",
     "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^19.0.0"
