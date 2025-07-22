@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Error from 'next/error';
 import QuestionResult from './question-result';
-import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep, demoIds, getNewTextComponent } from '../lib/questions';
+import { doEmojis, generateDemoQuestion, getResult, isIconDisplay, isSingleStep, demoIds, getNewTextComponent, preloadVoiceAlphabetAudio } from '../lib/questions';
 import ButtonNewQuestion from './button-new-question';
 import QuestionLoading from './question-loading';
 
@@ -21,6 +21,10 @@ export default function Question({ demoId, subject }) {
     const [disabledOptionsKO, setDisabledOptionsKO] = useState([]);
 
     useEffect(() => {
+        // Preload audio files if this is a voice alphabet demo
+        if (demoId === demoIds.VOICE_ALPHABET_CZ_1) {
+            preloadVoiceAlphabetAudio();
+        }
         // Show new question immediately. Good for quick practising, not for timed tests.
         handleNewQuestionClick();
     }, []);
