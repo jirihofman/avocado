@@ -32,6 +32,7 @@ export default function Demo() {
                                 <Link legacyBehavior href='/board/demo/dice-larger-1'><a role='button' title='Najdi větší číslo na kostce' className='btn btn-outline-primary btn-sm'>🎲 Najdi vyšší</a></Link>
                                 <Link legacyBehavior href='/board/demo/dice-karak-1'><a role='button' title='Karak' className='btn btn-outline-primary btn-sm'>🎲🐉 Karak</a></Link>
                                 <Link legacyBehavior href='/board/demo/chess-1'><a role='button' title='Co můžu sebrat?' className='btn btn-outline-primary btn-sm'>♟ Šachy</a></Link>
+                                <Link legacyBehavior href='/board/demo/vybuchy-1'><a role='button' title='Výbuchy' className='btn btn-outline-primary btn-sm'>💥 Výbuchy</a></Link>
                             </div>
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Doplň</div>
