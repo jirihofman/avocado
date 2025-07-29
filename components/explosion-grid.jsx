@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { emojisplosion } from 'emojisplosion';
 
 // Themed emoji collections
@@ -14,7 +14,7 @@ const emojiThemes = {
 
 const themeNames = Object.keys(emojiThemes);
 
-export default function ExplosionGrid({ onExplosion }) {
+export default function ExplosionGrid({ onExplosion, regenerateKey }) {
     // Generate a random 3x3 grid with themed columns
     const generateGrid = () => {
         const themes = [
@@ -37,7 +37,12 @@ export default function ExplosionGrid({ onExplosion }) {
         return grid;
     };
 
-    const [grid] = useState(generateGrid);
+    const [grid, setGrid] = useState(generateGrid);
+
+    // Regenerate grid when regenerateKey changes
+    useEffect(() => {
+        setGrid(generateGrid());
+    }, [regenerateKey]);
 
     const handleCellClick = (event, cell) => {
         const { emoji, theme, row } = cell;
