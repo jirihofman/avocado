@@ -60,6 +60,9 @@ export default function Exercise(props) {
         case demoIds.TV_1:
             subject = 'Televize';
             break;
+        case demoIds.VYBUCHY_1:
+            subject = 'Výbuchy';
+            break;
 	
         default:
             if (!demoIds[demoId]) {
