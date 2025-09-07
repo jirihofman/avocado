@@ -12,6 +12,7 @@
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/tests-ct-results/
 
 # next.js
 /.next/

@@ -18,7 +18,10 @@
     "lint": "eslint . --ext .js,.jsx",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "test:ct": "playwright test -c playwright-ct.config.js",
+    "test:ct:ui": "playwright test -c playwright-ct.config.js --ui",
+    "test:ct:report": "playwright show-report"
   },
   "dependencies": {
     "emojisplosion": "^4.0.0",
@@ -30,6 +33,7 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@playwright/experimental-ct-react": "^1.55.0",
     "@playwright/test": "^1.55.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.37.5"
