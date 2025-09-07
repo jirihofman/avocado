@@ -3,7 +3,7 @@ import Header from '../components/header';
 
 test.describe('Header Component', () => {
     test.describe('Mobile', () => {
-        test('renders with collapsed navigation', async ({ mount, page }) => {
+        test('renders with collapsed navigation', async({ mount, page }) => {
             // Set mobile viewport
             await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE dimensions
             
@@ -24,7 +24,7 @@ test.describe('Header Component', () => {
             await expect(component.locator('.navbar-toggler')).toBeVisible();
         });
 
-        test('shows navigation when toggled on mobile', async ({ mount, page }) => {
+        test('shows navigation when toggled on mobile', async({ mount, page }) => {
             // Set mobile viewport
             await page.setViewportSize({ width: 375, height: 667 });
             
@@ -43,7 +43,7 @@ test.describe('Header Component', () => {
     });
 
     test.describe('Desktop', () => {
-        test('renders with visible navigation', async ({ mount, page }) => {
+        test('renders with visible navigation', async({ mount, page }) => {
             // Set desktop viewport
             await page.setViewportSize({ width: 1366, height: 768 }); // Macbook-like dimensions
             
@@ -63,7 +63,7 @@ test.describe('Header Component', () => {
             await expect(component.locator('.navbar-toggler')).toBeHidden();
         });
 
-        test('opens modal when clicking O Aplikaci', async ({ mount, page }) => {
+        test('opens modal when clicking O Aplikaci', async({ mount, page }) => {
             await page.setViewportSize({ width: 1366, height: 768 });
             
             const component = await mount(<Header />);

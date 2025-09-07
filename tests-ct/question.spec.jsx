@@ -4,7 +4,7 @@ import { demoIds } from '../lib/questions';
 
 test.describe('Question Component', () => {
 
-    test('renders add-1 question', async ({ mount }) => {
+    test('renders add-1 question', async({ mount }) => {
         const component = await mount(<Question demoId={'add-1'} subject={'math'} />);
         
         // Wait for the question to load
@@ -14,7 +14,7 @@ test.describe('Question Component', () => {
         await expect(component.locator('.question-btn')).toHaveCount(4);
     });
 
-    test('renders dice-1 question', async ({ mount }) => {
+    test('renders dice-1 question', async({ mount }) => {
         const component = await mount(<Question demoId={'dice-larger-1'} subject={'dice'} />);
         
         // Wait for the question to load
@@ -25,7 +25,7 @@ test.describe('Question Component', () => {
     });
 
     test.describe('words-1 question', () => {
-        test('handles wrong answer on first click', async ({ mount }) => {
+        test('handles wrong answer on first click', async({ mount }) => {
             const component = await mount(<Question demoId={demoIds.WORDS_1} subject={'words'} />);
             
             // Wait for question to load
@@ -51,7 +51,7 @@ test.describe('Question Component', () => {
     });
 
     test.describe('patterns-1 question', () => {
-        test('reload functionality works correctly', async ({ mount }) => {
+        test('reload functionality works correctly', async({ mount }) => {
             const component = await mount(<Question demoId={demoIds.PATTERNS_1} subject={'patterns'} />);
             
             // Wait for question to load
@@ -100,7 +100,7 @@ test.describe('Question Component', () => {
         });
     });
 
-    test('displays loading state initially', async ({ mount }) => {
+    test('displays loading state initially', async({ mount }) => {
         // Mount the component and immediately check for loading state
         const component = await mount(<Question demoId={'add-1'} subject={'math'} />);
         
@@ -108,7 +108,7 @@ test.describe('Question Component', () => {
         await expect(component).toBeVisible();
     });
 
-    test('handles question completion', async ({ mount }) => {
+    test('handles question completion', async({ mount }) => {
         const component = await mount(<Question demoId={'add-1'} subject={'math'} />);
         
         // Wait for the question to load
