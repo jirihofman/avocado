@@ -16,7 +16,7 @@
     "build": "next build",
     "start": "next start -p 4038",
     "lint": "eslint . --ext .js,.jsx",
-  "test": "playwright test --project=chromium",
+    "test": "playwright test --project=chromium",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
     "test:ct": "playwright test -c playwright-ct.config.js",

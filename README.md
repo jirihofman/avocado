@@ -1,5 +1,3 @@
-[![avocado](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/rv7kws/main&style=plastic&logo=cypress)](https://dashboard.cypress.io/projects/rv7kws/runs)
-
 # 🥑 Avokádo lekce lehce
 Webová aplikace, která nabízí příklady k procvičování pro žáky základních škol i předškolní děti.
 # Next.js
@@ -13,14 +11,7 @@ Dev:
 
 Stack:
 - Next.js, bootstrap 5, vercel
-- jest, cypress
-
-TODO / Roadmap:
-- [ ] i18n: english
-- [ ] jest + code coverage
-- Třída
-- [ ] Správa uživatelů (žáků)
-- [ ] Testy pro celou třídu
+- jest, playwright
 
 # How to add a new question
 1. Add a new question to the `questions` array in `lib/questions.js`.
