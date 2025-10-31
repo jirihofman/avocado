@@ -20,6 +20,9 @@ export default function Demo() {
                             <div className='input-group px-0 mx-0'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Matematika</div>
                                 <Link legacyBehavior href='/board/demo/add-1'><a role='button' title='Sčítání' className='btn btn-outline-primary btn-sm'>Sčítání</a></Link>
+                                <Link legacyBehavior href='/board/demo/add-2'><a role='button' title='Sčítání do 20' className='btn btn-outline-primary btn-sm'>Sčítání do 20</a></Link>
+                                <Link legacyBehavior href='/board/demo/subtract-1'><a role='button' title='Odčítání 1-10' className='btn btn-outline-primary btn-sm'>Odčítání 1-10</a></Link>
+                                <Link legacyBehavior href='/board/demo/subtract-2'><a role='button' title='Odčítání 1-20' className='btn btn-outline-primary btn-sm'>Odčítání 1-20</a></Link>
                                 <Link legacyBehavior href='/board/demo/multiply-1'><a role='button' title='Malá násobilka' className='btn btn-outline-primary btn-sm'>Malá násobilka</a></Link>
                                 <Link legacyBehavior href='/board/demo/larger-1'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší 1-10</a></Link>
                                 <Link legacyBehavior href='/board/demo/larger-2'><a role='button' title='Najdi větší číslo' className='btn btn-outline-primary btn-sm'>Najdi vyšší 1-20</a></Link>
@@ -69,7 +72,7 @@ export default function Demo() {
                     <h2 className='accordion-header' id='headingTwo'>
                         <button className='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo'>
                             <span>Matematika</span>
-                            <span className='badge bg-secondary mx-1'>5</span>
+                            <span className='badge bg-secondary mx-1'>8</span>
                         </button>
                     </h2>
                     <div id='collapseTwo' className='accordion-collapse collapse' aria-labelledby='headingTwo' data-bs-parent='#accordionDemo'>
@@ -77,6 +80,9 @@ export default function Demo() {
                             <div className='input-group'>
                                 <div className='input-group-text btn-sm' style={{ maxWidth: '100px', minWidth: '100px' }}>Aritmetika</div>
                                 <Link legacyBehavior href='/board/demo/add-1'><a role='button' title='Sčítání' className='btn btn-outline-primary btn-sm'>Sčítání</a></Link>
+                                <Link legacyBehavior href='/board/demo/add-2'><a role='button' title='Sčítání do 20' className='btn btn-outline-primary btn-sm'>Sčítání do 20</a></Link>
+                                <Link legacyBehavior href='/board/demo/subtract-1'><a role='button' title='Odčítání 1-10' className='btn btn-outline-primary btn-sm'>Odčítání 1-10</a></Link>
+                                <Link legacyBehavior href='/board/demo/subtract-2'><a role='button' title='Odčítání 1-20' className='btn btn-outline-primary btn-sm'>Odčítání 1-20</a></Link>
                                 <Link legacyBehavior href='/board/demo/multiply-1'><a role='button' title='Malá násobilka' className='btn btn-outline-primary btn-sm'>Malá násobilka</a></Link>
                             </div>
                             <div className='input-group'>

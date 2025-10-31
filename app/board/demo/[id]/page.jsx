@@ -16,6 +16,18 @@ export default function Exercise(props) {
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
             break;
+        case demoIds.ADD_2:
+            notes = 'Vždy existiuje právě jedna správná odpověď.';
+            subject = 'Matematika';
+            break;
+        case demoIds.SUBTRACT_1:
+            notes = 'Vždy existiuje právě jedna správná odpověď.';
+            subject = 'Matematika';
+            break;
+        case demoIds.SUBTRACT_2:
+            notes = 'Vždy existiuje právě jedna správná odpověď.';
+            subject = 'Matematika';
+            break;
         case demoIds.MULTIPLY_1:
             notes = 'Vždy existiuje právě jedna správná odpověď.';
             subject = 'Matematika';
