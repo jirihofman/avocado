@@ -157,9 +157,11 @@ export default function Question({ demoId, subject }) {
         return <Error statusCode={error} />;
     }
 
-    const submitButtonClass = question && question.state !== 'answer-selected' ? 'btn-outline-primary' : 'btn-primary';
+    const submitButtonClass = question && question.state !== 'answer-selected' 
+        ? 'bg-white border-2 border-blue-500 text-blue-600 hover:bg-blue-50' 
+        : 'bg-blue-500 hover:bg-blue-600 text-white';
     // Classes to display icon instead of text options
-    const optionsGridClass = isIconDisplay(demoId) ? 'd-flex justify-content-center align-items-center mt-4' : 'd-grid d-block';
+    const optionsGridClass = isIconDisplay(demoId) ? 'flex justify-center items-center mt-4' : 'grid block';
     const stylesBoardClass = result?.ok === true ? 'styles-board-ok' : result?.ok === false ? 'styles-board-fail' : null;
 
     if (!question) return <QuestionLoading />;
@@ -194,7 +196,7 @@ export default function Question({ demoId, subject }) {
                 }
 
                 if (index === currentLetterIndex && question.state !== 'completed') {
-                    // bootstrap style warning color
+                    // warning color with dashed border
                     style.border = '3px dashed #f0ad4e';
                     style.fontWeight = 'bold';
                     className = 'current';
@@ -202,7 +204,7 @@ export default function Question({ demoId, subject }) {
                     style.border = '3px solid transparent';
                     className = 'not-completed';
                 }
-                return <button key={question.text + index + letter} className={`btn btn-lg btn-outline-primary me-1 ${className}`} disabled={true} style={style}>{letter}</button>;
+                return <button key={question.text + index + letter} className={`px-3 py-2 text-2xl border-2 border-blue-500 bg-white text-blue-600 rounded mr-1 ${className}`} disabled={true} style={style}>{letter}</button>;
             });
 
             return <>
@@ -213,7 +215,7 @@ export default function Question({ demoId, subject }) {
     }
 
     return <div className={stylesBoardClass}>
-        <div className='h1 question-text'>
+        <div className='text-4xl font-bold question-text'>
             <small>{isSingleStep(demoId) ? question.pretext: ''}</small>
             <b>{getTextForWordQuestion()}</b>
         </div>
@@ -223,29 +225,41 @@ export default function Question({ demoId, subject }) {
                 question.options.map((option, index) => {
                     // TODO: redo this to use steps too
                     let isAnswerCorrect = option.value === question.solution;
-                    let variant = optionsEnabled ? 'secondary' : isAnswerCorrect ? 'success' : 'danger';
+                    let variant = optionsEnabled ? 'gray' : isAnswerCorrect ? 'green' : 'red';
                     let classNameActive = option.selected ? 'active' : '';
                     let optionDisabled = !optionsEnabled;
 
                     if (!isSingleStep(demoId)) {
                         if ([...disabledOptionsOK, ...disabledOptionsKO].includes(option.id)) {
                             isAnswerCorrect = disabledOptionsOK.includes(option.id);
-                            variant = isAnswerCorrect ? 'success' : 'danger';
+                            variant = isAnswerCorrect ? 'green' : 'red';
                             classNameActive = 'active';
                             optionDisabled = true;
                         } else {
-                            variant = 'secondary';
+                            variant = 'gray';
                             optionDisabled = false;
                             classNameActive = '';
                         }
                     }
 
-                    const classNameButton = option.selected && isSingleStep(demoId) ? `btn-${variant}` : `btn-outline-${variant}`;
+                    // Button color classes based on variant
+                    let colorClasses = '';
+                    if (option.selected && isSingleStep(demoId)) {
+                        // Filled button
+                        if (variant === 'gray') colorClasses = 'bg-gray-500 text-white border-gray-500';
+                        else if (variant === 'green') colorClasses = 'bg-green-500 text-white border-green-500';
+                        else if (variant === 'red') colorClasses = 'bg-red-500 text-white border-red-500';
+                    } else {
+                        // Outlined button
+                        if (variant === 'gray') colorClasses = 'bg-white text-gray-700 border-gray-500 hover:bg-gray-50';
+                        else if (variant === 'green') colorClasses = 'bg-white text-green-700 border-green-500 hover:bg-green-50';
+                        else if (variant === 'red') colorClasses = 'bg-white text-red-700 border-red-500 hover:bg-red-50';
+                    }
 
                     return (
                         <button
                             key={option.id}
-                            className={`question-btn btn btn-lg w-100 ${isIconDisplay(demoId) ? 'justify-content-center' : ''} ${classNameButton} ${classNameActive}`}
+                            className={`question-btn px-6 py-3 rounded-lg border-2 w-full ${isIconDisplay(demoId) ? 'justify-center' : ''} ${colorClasses} ${classNameActive}`}
                             data-value={option.value}
                             disabled={optionDisabled}
                             data-id={option.id}
@@ -257,8 +271,8 @@ export default function Question({ demoId, subject }) {
                             {option.displayValue || option.value}
                             {!isIconDisplay(demoId) && result && (
                                 isAnswerCorrect ?
-                                    <span className='badge bg-success mx-2 pull-right'>správně</span> :
-                                    <span className='badge bg-danger mx-2'>špatně</span>
+                                    <span className='bg-green-500 text-white px-3 py-1 rounded mx-2'>správně</span> :
+                                    <span className='bg-red-500 text-white px-3 py-1 rounded mx-2'>špatně</span>
                             )}
                         </button>
                     );
@@ -266,13 +280,13 @@ export default function Question({ demoId, subject }) {
             }
         </div>
         {/* Buttons next to each other */}
-        <div className='d-flex justify-content-between mt-5 pt-4 border-top'>
+        <div className='flex justify-between mt-5 pt-4 border-t border-gray-300'>
             {
                 settings.confirmAnswer &&
-				<button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`btn ${submitButtonClass} btn-lg w-50`}>🆗</button>
+				<button disabled={!submitEnabled} onClick={handleConfirmButtonClick} id='styles-submit' className={`px-6 py-3 rounded-lg font-bold text-2xl ${submitButtonClass} w-1/2`}>🆗</button>
             }
             <ButtonNewQuestion question={question} handleNewQuestionClick={handleNewQuestionClick} settings={settings} />
-            <button onClick={handleRetryButtonClick} className={`btn ${submitButtonClass} btn-lg w-50`} title='Opakovat'>🔄</button>
+            <button onClick={handleRetryButtonClick} className={`px-6 py-3 rounded-lg font-bold text-2xl ${submitButtonClass} w-1/2`} title='Opakovat'>🔄</button>
         </div>
         <div className='styles-resultText'>{result?.text}</div>
 
