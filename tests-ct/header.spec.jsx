@@ -15,13 +15,13 @@ test.describe('Header Component', () => {
             // Navigation items should be hidden (collapsed) on mobile
             const navItems = ['Nastavení', 'GitHub', 'O Aplikaci'];
             for (const item of navItems) {
-                // The Bootstrap collapse functionality means items are in DOM but not visible
+                // The Tailwind responsive design means items are in DOM but not visible
                 const navLink = component.locator('header ul li a').filter({ hasText: item });
                 await expect(navLink).toBeHidden();
             }
             
             // Toggle button should be visible on mobile
-            await expect(component.locator('.navbar-toggler')).toBeVisible();
+            await expect(component.locator('button[aria-label="Toggle navigation"]')).toBeVisible();
         });
 
         test('shows navigation when toggled on mobile', async({ mount, page }) => {
@@ -31,7 +31,7 @@ test.describe('Header Component', () => {
             const component = await mount(<Header />);
             
             // Click the toggle button to show navigation
-            await component.locator('.navbar-toggler').click();
+            await component.locator('button[aria-label="Toggle navigation"]').click();
             
             // Navigation items should now be visible
             const navItems = ['Nastavení', 'GitHub', 'O Aplikaci'];
@@ -60,7 +60,7 @@ test.describe('Header Component', () => {
             }
             
             // Toggle button should be hidden on desktop
-            await expect(component.locator('.navbar-toggler')).toBeHidden();
+            await expect(component.locator('button[aria-label="Toggle navigation"]')).toBeHidden();
         });
 
         test('opens modal when clicking O Aplikaci', async({ mount, page }) => {
@@ -69,11 +69,14 @@ test.describe('Header Component', () => {
             const component = await mount(<Header />);
             
             // Click on "O Aplikaci" link
-            await component.locator('header ul li a').filter({ hasText: 'O Aplikaci' }).click();
+            await component.locator('header ul li').filter({ hasText: 'O Aplikaci' }).click();
             
-            // Modal should be visible
-            await expect(component.locator('#exampleModal')).toBeVisible();
-            await expect(component.locator('.modal-title')).toHaveText('O aplikaci 🥑');
+            // Modal should be visible - it's now a fixed overlay
+            const modal = component.locator('div.fixed.inset-0');
+            await expect(modal).toBeVisible();
+            
+            // Check modal title
+            await expect(component.getByText('O aplikaci 🥑')).toBeVisible();
         });
     });
 });

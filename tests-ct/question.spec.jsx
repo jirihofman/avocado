@@ -41,8 +41,8 @@ test.describe('Question Component', () => {
             const wrongOption = component.locator('.question-btn').filter({ hasNotText: firstLetter }).first();
             await wrongOption.click();
             
-            // The wrong option should have an error class (btn-outline-danger or similar)
-            await expect(wrongOption).toHaveClass(/btn-outline-danger|error|wrong/);
+            // The wrong option should have error styling (red border/text)
+            await expect(wrongOption).toHaveClass(/border-red|text-red|bg-red/);
             
             // The correct option should be disabled or have a different state
             const correctOption = component.locator('.question-btn').filter({ hasText: firstLetter });
@@ -66,12 +66,12 @@ test.describe('Question Component', () => {
             await expect(option2).toBeVisible();
             await expect(option3).toBeVisible();
             
-            // Should have reload button
-            const reloadButton = component.locator('button.btn.btn-outline-primary.btn-lg.w-50');
+            // Should have reload button (styled with Tailwind)
+            const reloadButton = component.locator('button[title="Opakovat"]');
             await expect(reloadButton).toBeVisible();
             
             // Check that the question mark indicator exists
-            const questionMarkIndicator = component.locator('b > .d-flex');
+            const questionMarkIndicator = component.locator('b > .flex');
             await expect(questionMarkIndicator).toBeVisible();
             
             // Test clicking first option
