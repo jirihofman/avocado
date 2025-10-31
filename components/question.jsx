@@ -161,7 +161,7 @@ export default function Question({ demoId, subject }) {
         ? 'bg-white border-2 border-blue-500 text-blue-600 hover:bg-blue-50' 
         : 'bg-blue-500 hover:bg-blue-600 text-white';
     // Classes to display icon instead of text options
-    const optionsGridClass = isIconDisplay(demoId) ? 'flex justify-center items-center mt-4' : 'grid block';
+    const optionsGridClass = isIconDisplay(demoId) ? 'flex justify-center items-center mt-4' : 'block';
     const stylesBoardClass = result?.ok === true ? 'styles-board-ok' : result?.ok === false ? 'styles-board-fail' : null;
 
     if (!question) return <QuestionLoading />;
@@ -259,12 +259,12 @@ export default function Question({ demoId, subject }) {
                     return (
                         <button
                             key={option.id}
-                            className={`question-btn px-6 py-3 rounded-lg border-2 w-full ${isIconDisplay(demoId) ? 'justify-center' : ''} ${colorClasses} ${classNameActive}`}
+                            className={`question-btn px-6 py-3 rounded-lg border-2 w-full flex ${isIconDisplay(demoId) ? 'justify-center' : 'justify-between'} ${colorClasses} ${classNameActive}`}
                             data-value={option.value}
                             disabled={optionDisabled}
                             data-id={option.id}
                             data-index={index}
-                            style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.5rem' }}
+                            style={{ fontWeight: 'bold', fontSize: '1.5rem' }}
                             onClick={(evt) => handleAnswerClick(evt, index)}
                         >
                             {/* {isAnswerCorrect ? '✅' : '❌'} */}
