@@ -25,16 +25,16 @@
   },
   "dependencies": {
     "emojisplosion": "^4.0.0",
-    "eslint-config-next": "^15.3.5",
-    "lodash": "^4.17.21",
-    "next": "^15.4.10",
-    "react": "^19.0.0",
+    "eslint-config-next": "^15.5.26",
+    "lodash": "^4.18.1",
+    "next": "^15.5.26",
+    "react": "^19.3.0",
     "react-bootstrap-icons": "^1.11.6",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "^1.57.0",
-    "@playwright/test": "^1.57.0",
+    "@playwright/experimental-ct-react": "1.62.1",
+    "@playwright/test": "1.62.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.37.5"
   }
